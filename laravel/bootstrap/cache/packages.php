@@ -1,9 +1,50 @@
 <?php return array (
+  'backpack/crud' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Backpack\\CRUD\\BackpackServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'CRUD' => 'Backpack\\CRUD\\app\\Library\\CrudPanel\\CrudPanelFacade',
+      'Widget' => 'Backpack\\CRUD\\app\\Library\\Widget',
+    ),
+  ),
+  'creativeorange/gravatar' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Creativeorange\\Gravatar\\GravatarServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Gravatar' => 'Creativeorange\\Gravatar\\Facades\\Gravatar',
+    ),
+  ),
+  'digitallyhappy/assets' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'DigitallyHappy\\Assets\\AssetsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Assets' => 'DigitallyHappy\\Assets\\Facades\\Assets',
+    ),
+  ),
   'fruitcake/laravel-cors' => 
   array (
     'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    ),
+  ),
+  'ibex/crud-generator' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Ibex\\CrudGenerator\\CrudServiceProvider',
     ),
   ),
   'jenssegers/agent' => 
@@ -50,6 +91,18 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'laravelcollective/html' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Collective\\Html\\HtmlServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Form' => 'Collective\\Html\\FormFacade',
+      'Html' => 'Collective\\Html\\HtmlFacade',
     ),
   ),
   'livewire/livewire' => 
@@ -104,6 +157,17 @@
     'aliases' => 
     array (
       'Jetstrap' => 'Pixinvent\\Jetstrap\\JetstrapFacade',
+    ),
+  ),
+  'prologue/alerts' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Prologue\\Alerts\\AlertsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Alert' => 'Prologue\\Alerts\\Facades\\Alert',
     ),
   ),
   'spatie/laravel-ignition' => 

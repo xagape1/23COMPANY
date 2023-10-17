@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Profile;
+use App\Models\Review;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,4 +62,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'author_id');
+    }
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class, 'author_id');
+    }
+
 }
