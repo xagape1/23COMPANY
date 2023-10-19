@@ -8,6 +8,5 @@ $configData = Helper::appClasses();
 
 @section('content')
 <h4>Home Page</h4>
-    @include('partials.movies')
 <h4>Cambios desde local</h4>
 @endsection

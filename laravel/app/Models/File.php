@@ -27,6 +27,7 @@ class File extends Model
     {
         return $this->hasOne(Movie::class);
     }
+
     /**
      * Store uploaded file at disk and DB
      * 
@@ -38,15 +39,17 @@ class File extends Model
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
         Log::debug("Storing file '{$fileName}' ($fileSize)...");
-        
+
         // Store file at disk
         $uploadName = time() . '_' . $fileName;
         $filePath = $upload->storeAs(
-            'uploads',      // Path
-            $uploadName ,   // Filename
-            'public'        // Disk
+            'uploads',
+            // Path
+            $uploadName,
+            // Filename
+            'public' // Disk
         );
-        
+
         $stored = Storage::disk('public')->exists($filePath);
 
         if ($stored) {

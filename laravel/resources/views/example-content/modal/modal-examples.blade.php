@@ -111,9 +111,9 @@
 </div>
 
 <!-- All Modals -->
-@include('_partials/_modals/modal-add-new-cc')
-@include('_partials/_modals/modal-add-new-address')
-@include('_partials/_modals/modal-refer-earn')
-@include('_partials/_modals/modal-edit-user')
-@include('_partials/_modals/modal-enable-otp')
+@include('partials/_modals/modal-add-new-cc')
+@include('partials/_modals/modal-add-new-address')
+@include('partials/_modals/modal-refer-earn')
+@include('partials/_modals/modal-edit-user')
+@include('partials/_modals/modal-enable-otp')
 @endsection

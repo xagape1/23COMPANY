@@ -16,7 +16,7 @@
   <div class="d-flex justify-content-between flex-row">
     <div class="mb-4">
       <div class="d-flex svg-illustration mb-3 gap-2">
-        @include('_partials.macros')
+        @include('partials.macros')
         <span class="app-brand-text h3 mb-0 fw-bold">
           {{ config('variables.templateName') }}
         </span>

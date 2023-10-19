@@ -196,7 +196,7 @@ $pricingModal = true;
               </div>
             </div>
             <!-- Modal -->
-            @include('_partials/_modals/modal-edit-cc')
+            @include('partials/_modals/modal-edit-cc')
             <!--/ Modal -->
           </div>
         </div>

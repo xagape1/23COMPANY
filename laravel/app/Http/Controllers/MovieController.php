@@ -89,30 +89,36 @@ class MovieController extends Controller
         }
         return null;
     }
-    
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movie $movie)
     {
-        $movie = Movie::find($id);
-        Log::debug($id);
-        Log::debug($movie);
-        if ($movie) {
-            return response()->json([
-                'success' => true,
-                'data' => $movie
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => "not found"
-            ], 404);
-        }
+        return view('movies.show', [
+            'movie' => $movie,
+            'cover' => $movie->file,
+            'intro' => $movie->file,
+        ]);
+    }
+    
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Movie $movie)
+    {
+        return view("posts.edit", [
+            'movie'   => $movie,
+            'cover' => $movie->cover,
+            'intro' => $movie->intro,
+        ]);
     }
 
     /**
@@ -122,76 +128,41 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Movie $movie)
     {
-        // Encuentra la película por su ID
-        $movie = Movie::find($id);
-        if (!$movie) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Movie not found'
-            ], 404);
-        }
-
-        // Encuentra los archivos de portada e introducción relacionados con la película
-        $coverFile = File::find($movie->cover_id);
-        $introFile = File::find($movie->intro_id);
-        if (!$coverFile || !$introFile) {
-            return response()->json([
-                'success' => false,
-                'message' => 'File not found'
-            ], 404);
-        }
-
-        // Valida los datos recibidos
+        // Validar dades del formulari
         $validatedData = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title'      => 'required',
+            'description'  => 'required',
             'gender' => 'required',
-            'cover' => 'required|mimes:gif,jpeg,jpg,png',
-            'intro' => 'required|mimes:gif,jpeg,jpg,png',
+            'cover'    => 'required|mimes:gif,jpeg,jpg,png,mp4',
+            'intro'    => 'required|mimes:gif,jpeg,jpg,png,mp4',
         ]);
 
-        // Obtén los archivos del formulario
-        $cover = $request->file('cover');
-        $intro = $request->file('intro');
+        // Obtenir dades del formulari
+        $title      = $request->get('title');
+        $description      = $request->get('description');
+        $gender      = $request->get('gender');
+        $cover    = $request->file('cover');
+        $intro    = $request->file('intro');
 
-        // Sube los archivos al disco
-        $coverFileName = time() . '_' . $cover->getClientOriginalName();
-        $coverFilePath = $cover->storeAs('uploads', $coverFileName, 'public');
-
-        $introFileName = time() . '_' . $intro->getClientOriginalName();
-        $introFilePath = $intro->storeAs('uploads', $introFileName, 'public');
-
-        // Verifica la existencia de los archivos en el almacenamiento local
-        if (\Storage::disk('public')->exists($coverFilePath) && \Storage::disk('public')->exists($introFilePath)) {
-            // Actualiza los datos de los archivos en la base de datos
-            $coverFile->filepath = $coverFileName;
-            $coverFile->filesize = $cover->getSize();
-            $coverFile->save();
-
-            $introFile->filepath = $introFileName;
-            $introFile->filesize = $intro->getSize();
-            $introFile->save();
-
-            // Actualiza los datos de la película en la base de datos
-            $movie->title = $request->input('title');
-            $movie->description = $request->input('description');
-            $movie->gender = $request->input('gender');
+        // Desar fitxer (opcional)
+        if (is_null($cover && $intro) || $movie->file->diskSave($cover) && $movie->file->diskSave($intro) ) {
+            Log::debug("Updating DB...");
+            $movie->title      = $title;
+            $movie->description  = $description;
+            $movie->gender  = $gender;
             $movie->save();
-
-            return response()->json([
-                'success' => true,
-                'data' => $movie
-            ], 200);
+            Log::debug("DB storage OK");
+            // Patró PRG amb missatge d'èxit
+            return redirect()->route('movies.show', $movie)
+                ->with('success', __('Post successfully saved'));
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error updating file'
-            ], 421);
+            // Patró PRG amb missatge d'error
+            return redirect()->route("movies.edit")
+                ->with('error', __('ERROR Uploading file'));
         }
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -199,34 +170,13 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
-        $movie = Movie::find($id);
-        if (empty($movie)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'not found'
-            ], 404);
-        }
-
-        if ($movie) {
-            $movie->delete();
-
-            $intro = File::find($movie->intro_id);
-
-            $cover = File::find($movie->cover_id);
-            $cover && $intro->diskDelete();
-
-            return response()->json([
-                'success' => true,
-                'data' => $movie
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error deleting file'
-            ], 500);
-        }
+        $movie->delete();
+        $movie->file->diskDelete();
+        // Patró PRG amb missatge d'èxit
+        return redirect()->route("/")
+            ->with('success', __('Movie successfully deleted'));
     }
 
     public function update_workaround(Request $request, $id)

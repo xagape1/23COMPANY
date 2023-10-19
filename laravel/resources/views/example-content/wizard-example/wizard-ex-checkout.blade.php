@@ -616,5 +616,5 @@
 <!--/ Checkout Wizard -->
 
 <!-- Add new address modal -->
-@include('_partials/_modals/modal-add-new-address')
+@include('partials/_modals/modal-add-new-address')
 @endsection

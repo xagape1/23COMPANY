@@ -53,7 +53,7 @@ $customizerHidden = 'customizer-hide';
         <div class="app-brand border-bottom mx-3 mb-4">
           <a href="{{url('/')}}" class="app-brand-link gap-2 mb-3">
             <span class="app-brand-logo demo">
-              @include('_partials.macros')
+              @include('partials.macros')
             </span>
             <span class="app-brand-text demo h3 mb-0 fw-bold">
               {{config('variables.templateName')}}

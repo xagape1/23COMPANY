@@ -1,0 +1,308 @@
+# Query: _partials
+
+127 results - 89 files
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\confirm-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\forgot-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\login.blade.php:
+  38:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\register.blade.php:
+  38:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\reset-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\two-factor-challenge.blade.php:
+  39:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+23COMPANY\laravel\vendor\pixinvent\frest-html-laravel-jetstream\stubs\livewire\resources\views\auth\verify-email.blade.php:
+  40:             <span class="app-brand-logo demo">@include('partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\confirm-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\forgot-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\login.blade.php:
+  38:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\register.blade.php:
+  38:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\reset-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\two-factor-challenge.blade.php:
+  39:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\auth\verify-email.blade.php:
+  40:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\content\authentications\auth-login-basic.blade.php:
+  41:                 @include('_partials.macros')
+
+Film-Company\laravel\resources\views\content\authentications\auth-register-basic.blade.php:
+  40:                 @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\apps\app-access-permission.blade.php:
+  58: @include('_partials/_modals/modal-add-permission')
+  59: @include('_partials/_modals/modal-edit-permission')
+
+Film-Company\laravel\resources\views\example-content\apps\app-access-roles.blade.php:
+  244: @include('_partials/_modals/modal-add-role')
+
+Film-Company\laravel\resources\views\example-content\apps\app-invoice-add.blade.php:
+   34:               @include('_partials.macros')
+  316: @include('_partials/_offcanvas/offcanvas-send-invoice')
+
+Film-Company\laravel\resources\views\example-content\apps\app-invoice-edit.blade.php:
+   35:               @include('_partials.macros')
+  321: @include('_partials/_offcanvas/offcanvas-send-invoice')
+  322: @include('_partials/_offcanvas/offcanvas-add-payment')
+
+Film-Company\laravel\resources\views\example-content\apps\app-invoice-preview.blade.php:
+   35:               @include('_partials.macros')
+  201: @include('_partials/_offcanvas/offcanvas-send-invoice')
+  202: @include('_partials/_offcanvas/offcanvas-add-payment')
+
+Film-Company\laravel\resources\views\example-content\apps\app-invoice-print.blade.php:
+  19:         @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\apps\app-user-view-account.blade.php:
+  298: @include('_partials/_modals/modal-edit-user')
+  299: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Company\laravel\resources\views\example-content\apps\app-user-view-billing.blade.php:
+  318: @include('_partials/_modals/modal-edit-user')
+  319: @include('_partials/_modals/modal-edit-cc')
+  320: @include('_partials/_modals/modal-add-new-address')
+  321: @include('_partials/_modals/modal-add-new-cc')
+  322: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Company\laravel\resources\views\example-content\apps\app-user-view-connections.blade.php:
+  375: @include('_partials/_modals/modal-edit-user')
+  376: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Company\laravel\resources\views\example-content\apps\app-user-view-notifications.blade.php:
+  256: @include('_partials/_modals/modal-edit-user')
+  257: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Company\laravel\resources\views\example-content\apps\app-user-view-security.blade.php:
+  269: @include('_partials/_modals/modal-edit-user')
+  270: @include('_partials/_modals/modal-enable-otp')
+  271: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-forgot-password-basic.blade.php:
+  39:                 @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-forgot-password-cover.blade.php:
+  54:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-login-basic.blade.php:
+  41:                 @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-login-cover.blade.php:
+  53:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-register-basic.blade.php:
+  40:                 @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-register-cover.blade.php:
+  54:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-register-multisteps.blade.php:
+  56:               @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-reset-password-basic.blade.php:
+  40:                 @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-reset-password-cover.blade.php:
+  54:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-two-steps-basic.blade.php:
+  41:               @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-two-steps-cover.blade.php:
+  56:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-verify-email-basic.blade.php:
+  25:               @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\authentications\auth-verify-email-cover.blade.php:
+  40:               @include('_partials.macros')
+
+Film-Company\laravel\resources\views\example-content\modal\modal-examples.blade.php:
+  114: @include('_partials/_modals/modal-add-new-cc')
+  115: @include('_partials/_modals/modal-add-new-address')
+  116: @include('_partials/_modals/modal-refer-earn')
+  117: @include('_partials/_modals/modal-edit-user')
+  118: @include('_partials/_modals/modal-enable-otp')
+
+Film-Company\laravel\resources\views\example-content\pages\pages-account-settings-billing.blade.php:
+  199:             @include('_partials/_modals/modal-edit-cc')
+
+Film-Company\laravel\resources\views\example-content\pages\pages-account-settings-security.blade.php:
+  108:     @include('_partials/_modals/modal-enable-otp')
+
+Film-Company\laravel\resources\views\example-content\wizard-example\wizard-ex-checkout.blade.php:
+  619: @include('_partials/_modals/modal-add-new-address')
+
+Film-Company\laravel\resources\views\layouts\contentNavbarLayout.blade.php:
+  62:             @include('_partials/_modals/modal-pricing')
+
+Film-Company\laravel\resources\views\layouts\horizontalLayout.blade.php:
+  66:             @include('_partials/_modals/modal-pricing')
+
+Film-Company\laravel\resources\views\layouts\sections\menu\verticalMenu.blade.php:
+  12:         @include('_partials.macros')
+
+Film-Company\laravel\resources\views\layouts\sections\navbar\navbar.blade.php:
+  14:           @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\confirm-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\forgot-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\login.blade.php:
+  38:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\register.blade.php:
+  38:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\reset-password.blade.php:
+  37:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\two-factor-challenge.blade.php:
+  39:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\auth\verify-email.blade.php:
+  40:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\content\authentications\auth-login-basic.blade.php:
+  41:                 @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\content\authentications\auth-register-basic.blade.php:
+  40:                 @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-access-permission.blade.php:
+  58: @include('_partials/_modals/modal-add-permission')
+  59: @include('_partials/_modals/modal-edit-permission')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-access-roles.blade.php:
+  244: @include('_partials/_modals/modal-add-role')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-invoice-add.blade.php:
+   34:               @include('_partials.macros')
+  316: @include('_partials/_offcanvas/offcanvas-send-invoice')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-invoice-edit.blade.php:
+   35:               @include('_partials.macros')
+  321: @include('_partials/_offcanvas/offcanvas-send-invoice')
+  322: @include('_partials/_offcanvas/offcanvas-add-payment')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-invoice-preview.blade.php:
+   35:               @include('_partials.macros')
+  201: @include('_partials/_offcanvas/offcanvas-send-invoice')
+  202: @include('_partials/_offcanvas/offcanvas-add-payment')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-invoice-print.blade.php:
+  19:         @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-user-view-account.blade.php:
+  298: @include('_partials/_modals/modal-edit-user')
+  299: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-user-view-billing.blade.php:
+  318: @include('_partials/_modals/modal-edit-user')
+  319: @include('_partials/_modals/modal-edit-cc')
+  320: @include('_partials/_modals/modal-add-new-address')
+  321: @include('_partials/_modals/modal-add-new-cc')
+  322: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-user-view-connections.blade.php:
+  375: @include('_partials/_modals/modal-edit-user')
+  376: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-user-view-notifications.blade.php:
+  256: @include('_partials/_modals/modal-edit-user')
+  257: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\apps\app-user-view-security.blade.php:
+  269: @include('_partials/_modals/modal-edit-user')
+  270: @include('_partials/_modals/modal-enable-otp')
+  271: @include('_partials/_modals/modal-upgrade-plan')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-forgot-password-basic.blade.php:
+  39:                 @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-forgot-password-cover.blade.php:
+  54:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-login-basic.blade.php:
+  41:                 @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-login-cover.blade.php:
+  53:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-register-basic.blade.php:
+  40:                 @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-register-cover.blade.php:
+  54:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-register-multisteps.blade.php:
+  56:               @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-reset-password-basic.blade.php:
+  40:                 @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-reset-password-cover.blade.php:
+  54:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-two-steps-basic.blade.php:
+  41:               @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-two-steps-cover.blade.php:
+  56:             <span class="app-brand-logo demo">@include('_partials.macros')</span>
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-verify-email-basic.blade.php:
+  25:               @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\authentications\auth-verify-email-cover.blade.php:
+  40:               @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\modal\modal-examples.blade.php:
+  114: @include('_partials/_modals/modal-add-new-cc')
+  115: @include('_partials/_modals/modal-add-new-address')
+  116: @include('_partials/_modals/modal-refer-earn')
+  117: @include('_partials/_modals/modal-edit-user')
+  118: @include('_partials/_modals/modal-enable-otp')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\pages\pages-account-settings-billing.blade.php:
+  199:             @include('_partials/_modals/modal-edit-cc')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\pages\pages-account-settings-security.blade.php:
+  108:     @include('_partials/_modals/modal-enable-otp')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\example-content\wizard-example\wizard-ex-checkout.blade.php:
+  619: @include('_partials/_modals/modal-add-new-address')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\layouts\contentNavbarLayout.blade.php:
+  62:             @include('_partials/_modals/modal-pricing')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\layouts\horizontalLayout.blade.php:
+  66:             @include('_partials/_modals/modal-pricing')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\layouts\sections\menu\verticalMenu.blade.php:
+  12:         @include('_partials.macros')
+
+Film-Companyy\Backend\Film-Company\laravel\resources\views\layouts\sections\navbar\navbar.blade.php:
+  14:           @include('_partials.macros')

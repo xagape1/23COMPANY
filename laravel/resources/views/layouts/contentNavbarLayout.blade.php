@@ -59,7 +59,7 @@ $container = ($container ?? 'container-xxl');
 
             <!-- pricingModal -->
             @if ($pricingModal)
-            @include('_partials/_modals/modal-pricing')
+            @include('partials/_modals/modal-pricing')
             @endif
             <!--/ pricingModal -->
 

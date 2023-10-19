@@ -241,6 +241,6 @@
 <!--/ Role cards -->
 
 <!-- Add Role Modal -->
-@include('_partials/_modals/modal-add-role')
+@include('partials/_modals/modal-add-role')
 <!-- / Add Role Modal -->
 @endsection

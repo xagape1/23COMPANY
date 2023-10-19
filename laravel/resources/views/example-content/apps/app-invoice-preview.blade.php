@@ -32,7 +32,7 @@
         <div class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
           <div class="mb-xl-0 mb-4">
             <div class="d-flex svg-illustration mb-3 gap-2">
-              @include('_partials.macros')
+              @include('partials.macros')
               <span class="app-brand-text h3 mb-0 fw-bold">
                 {{ config('variables.templateName') }}
               </span>
@@ -198,7 +198,7 @@
 </div>
 
 <!-- Offcanvas -->
-@include('_partials/_offcanvas/offcanvas-send-invoice')
-@include('_partials/_offcanvas/offcanvas-add-payment')
+@include('partials/_offcanvas/offcanvas-send-invoice')
+@include('partials/_offcanvas/offcanvas-add-payment')
 <!-- /Offcanvas -->
 @endsection

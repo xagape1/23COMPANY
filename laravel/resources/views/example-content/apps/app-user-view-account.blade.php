@@ -295,7 +295,7 @@
 </div>
 
 <!-- Modal -->
-@include('_partials/_modals/modal-edit-user')
-@include('_partials/_modals/modal-upgrade-plan')
+@include('partials/_modals/modal-edit-user')
+@include('partials/_modals/modal-upgrade-plan')
 <!-- /Modal -->
 @endsection

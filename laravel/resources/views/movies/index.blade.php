@@ -1,32 +1,11 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <h1>List of Movies</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($movies as $movie)
-                <tr>
-                    <td>
-                        @foreach ($files as $file)
-                            @if ($file->id === $movie->cover_id)
-                                <img src="{{ asset('storage/' . $file->filepath) }}" alt="Movie Image" style="max-width: 100px;">
-                            @endif
-                        @endforeach
-                    </td>
-                    <td>{{ $movie->title }}</td>
-                    <td>{{ $movie->description }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@endsection
+    
+    @section('movies')
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header borde">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link href = "https://fonts.googleapis.com/css?family=Montserrat" rel = "stylesheet" >  
+    
+    @include('partials.movies')

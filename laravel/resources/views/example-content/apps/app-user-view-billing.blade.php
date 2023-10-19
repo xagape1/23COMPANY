@@ -315,11 +315,11 @@
 </div>
 
 <!-- Modal -->
-@include('_partials/_modals/modal-edit-user')
-@include('_partials/_modals/modal-edit-cc')
-@include('_partials/_modals/modal-add-new-address')
-@include('_partials/_modals/modal-add-new-cc')
-@include('_partials/_modals/modal-upgrade-plan')
+@include('partials/_modals/modal-edit-user')
+@include('partials/_modals/modal-edit-cc')
+@include('partials/_modals/modal-add-new-address')
+@include('partials/_modals/modal-add-new-cc')
+@include('partials/_modals/modal-upgrade-plan')
 <!-- /Modal -->
 
 @endsection

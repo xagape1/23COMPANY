@@ -1,4 +1,3 @@
-@extends('layouts.app')
 
 @section('box-title')
 {{ __('Add Movie') }}
@@ -30,4 +29,5 @@ class="border posts"> <form method="post" action="{{ route('movies.store') }}" e
         <button type="reset" class="btn btn-secondary">{{ __('fields.Reset') }}</button>
         </form>
         </div> </div> </div>
-        </div> </div> @endsection
+        </div> </div> 
+        

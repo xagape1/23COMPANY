@@ -55,7 +55,7 @@
 
 
 <!-- Modal -->
-@include('_partials/_modals/modal-add-permission')
-@include('_partials/_modals/modal-edit-permission')
+@include('partials/_modals/modal-add-permission')
+@include('partials/_modals/modal-edit-permission')
 <!-- /Modal -->
 @endsection

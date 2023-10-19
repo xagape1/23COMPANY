@@ -105,7 +105,7 @@
       </div>
     </div>
     <!-- Modal -->
-    @include('_partials/_modals/modal-enable-otp')
+    @include('partials/_modals/modal-enable-otp')
     <!-- /Modal -->
 
     <!--/ Two-steps verification -->
