@@ -7,7 +7,7 @@
                     @foreach ($files as $file)
                         @if($file->id == $movie->cover_id)
                             <div class="div-foto-post">
-                                    <img alt ="Publicació d'usuari" class="img-posts" src='{{ asset("storage/{$file->filepath}") }}'/>
+                                    <img alt ="Portada Pelicula" class="img-posts" src='{{ asset("storage/{$file->filepath}") }}'/>
                             </div>
                         @endif
                     @endforeach

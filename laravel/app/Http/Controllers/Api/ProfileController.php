@@ -181,6 +181,10 @@ class ProfileController extends Controller
                 'message' => 'Error deleting file'
             ], 500);
         }
+    }
 
+    public function update_post(Request $request, $id)
+    {
+        return $this->update($request, $id);
     }
 }

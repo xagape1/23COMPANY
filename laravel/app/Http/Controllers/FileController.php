@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FileController extends Controller
 {
@@ -15,10 +15,19 @@ class FileController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'success' => true,
-            'data'    => File::all()
-        ], 200);
+        return view("files.index", [
+            'files' => File::all()
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view("files.create");
     }
 
     /**
@@ -29,131 +38,96 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
+
         // Desar fitxer al disc i inserir dades a BD
         $upload = $request->file('upload');
         $file = new File();
         $ok = $file->diskSave($upload);
 
         if ($ok) {
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 201);
+            // Patró PRG amb missatge d'èxit
+            return redirect()->route('files.show', $file)
+                ->with('success', __('File successfully saved'));
         } else {
-            return response()->json([
-                'success'  => false,
-                'message' => 'Error uploading file'
-            ], 421);
+            // Patró PRG amb missatge d'error
+            return redirect()->route("files.create")
+                ->with('error', __('ERROR uploading file'));
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(File $file)
     {
-        $file=File::find($id);
-        if ($file){
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 200);
-         }else{
-             return response()->json([
-                 'success' => false,
-                 'message'=> "not found"
-             ], 404);
-         }
-       
+        return view("files.show", [
+            'file' => $file
+        ]);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\File  $file
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(File $file)
+    {
+        return view("files.edit", [
+            'file' => $file
+        ]);
+    }
+    
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, File $file)
     {
-        
-        $file=File::find($id);
-        if (empty ($file)) {
-            return response()->json([
-                'success'  => false,
-                'message' => 'Error not found'
-            ], 404);
-        }
         // Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
-        // Desar fitxer al disc i inserir dades a BD
-        $upload = $request->file('upload');
 
+        // Desar fitxer al disc i actualitzar dades a BD
+        $upload = $request->file('upload');
         $ok = $file->diskSave($upload);
 
         if ($ok) {
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 200);
+            // Patró PRG amb missatge d'èxit
+            return redirect()->route('files.show', $file)
+                ->with('success', __('File successfully saved'));
         } else {
-            return response()->json([
-                'success'  => false,
-                'message' => 'Error uploading file'
-            ], 421);
+            // Patró PRG amb missatge d'error
+            return redirect()->route("files.edit")
+                ->with('error', __('ERROR uploading file'));
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(File $file)
     {
-        $file = File::find($id);
-        if (empty ($file)) {
-            return response()->json([
-                'success'  => false,
-                'message' => 'not found'
-            ], 404);
-        }
-        $ok =  $file->diskDelete();
-
-        if ($ok) {
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 200);
-        } else {
-            return response()->json([
-                'success'  => false,
-                'message' => 'Error deleting file'
-            ], 500);
-        }
+        // Eliminar fitxer del disc i BD
+        $file->diskDelete();
+        // Patró PRG amb missatge d'èxit
+        return redirect()->route("files.index")
+            ->with('success', __("File succesfully deleted."));
     }
-    public function update_post(Request $request, $id)
-    {
-        return $this->update($request, $id);
-    }
-    public function delete_post(Request $request, $id)
-    {
-        return $this->destroy($request, $id);
-    }
-    public function show_post(Request $request, $id)
-    {
-        return $this->show($request, $id);
-    }
+   
+ 
 }
-    

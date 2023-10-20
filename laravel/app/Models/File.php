@@ -43,11 +43,9 @@ class File extends Model
         // Store file at disk
         $uploadName = time() . '_' . $fileName;
         $filePath = $upload->storeAs(
-            'uploads',
-            // Path
-            $uploadName,
-            // Filename
-            'public' // Disk
+            'uploads',      // Path
+            $uploadName,    // Filename
+            'public'        // Disk
         );
 
         $stored = Storage::disk('public')->exists($filePath);

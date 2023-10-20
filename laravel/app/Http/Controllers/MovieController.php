@@ -184,4 +184,8 @@ class MovieController extends Controller
         return $this->update($request, $id);
     }
 
+    public function update_post(Request $request, $id)
+    {
+        return $this->update($request, $id);
+    }
 }
