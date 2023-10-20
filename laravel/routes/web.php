@@ -33,7 +33,7 @@ $controller_path = 'App\Http\Controllers';
 });
 
 Route::resource('files', FileController::class)
-->middleware(['auth']);
+->middleware(['auth', 'permission:files']);
 
 Route::resource('profiles', ProfileController::class)->middleware(['auth']);
 
