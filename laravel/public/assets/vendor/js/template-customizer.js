@@ -505,13 +505,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_customizer_template_customizer_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_template-customizer/_template-customizer.html */ "./resources/assets/vendor/js/_template-customizer/_template-customizer.html");
 /* harmony import */ var _template_customizer_template_customizer_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_template_customizer_template_customizer_html__WEBPACK_IMPORTED_MODULE_1__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
 
 
 var CSS_FILENAME_PATTERN = '%name%.css';
@@ -528,7 +524,6 @@ var DEFAULT_SHOW_DROPDOWN_ON_HOVER = undefined;
 var DEFAULT_NAVBAR_FIXED = !!cl.contains('layout-navbar-fixed');
 var DEFAULT_FOOTER_FIXED = !!cl.contains('layout-footer-fixed');
 var layoutType;
-
 if (cl.contains('layout-menu-offcanvas')) {
   layoutType = 'static-offcanvas';
 } else if (cl.contains('layout-menu-fixed')) {
@@ -538,33 +533,29 @@ if (cl.contains('layout-menu-offcanvas')) {
 } else {
   layoutType = 'static';
 }
-
 var DEFAULT_LAYOUT_TYPE = layoutType;
-
 var TemplateCustomizer = /*#__PURE__*/function () {
   function TemplateCustomizer(_ref) {
     var cssPath = _ref.cssPath,
-        themesPath = _ref.themesPath,
-        cssFilenamePattern = _ref.cssFilenamePattern,
-        displayCustomizer = _ref.displayCustomizer,
-        controls = _ref.controls,
-        defaultTextDir = _ref.defaultTextDir,
-        defaultLayoutType = _ref.defaultLayoutType,
-        defaultMenuCollapsed = _ref.defaultMenuCollapsed,
-        defaultMenuFlipped = _ref.defaultMenuFlipped,
-        defaultShowDropdownOnHover = _ref.defaultShowDropdownOnHover,
-        defaultNavbarFixed = _ref.defaultNavbarFixed,
-        defaultFooterFixed = _ref.defaultFooterFixed,
-        styles = _ref.styles,
-        defaultStyle = _ref.defaultStyle,
-        availableThemes = _ref.availableThemes,
-        defaultTheme = _ref.defaultTheme,
-        pathResolver = _ref.pathResolver,
-        onSettingsChange = _ref.onSettingsChange,
-        lang = _ref.lang;
-
+      themesPath = _ref.themesPath,
+      cssFilenamePattern = _ref.cssFilenamePattern,
+      displayCustomizer = _ref.displayCustomizer,
+      controls = _ref.controls,
+      defaultTextDir = _ref.defaultTextDir,
+      defaultLayoutType = _ref.defaultLayoutType,
+      defaultMenuCollapsed = _ref.defaultMenuCollapsed,
+      defaultMenuFlipped = _ref.defaultMenuFlipped,
+      defaultShowDropdownOnHover = _ref.defaultShowDropdownOnHover,
+      defaultNavbarFixed = _ref.defaultNavbarFixed,
+      defaultFooterFixed = _ref.defaultFooterFixed,
+      styles = _ref.styles,
+      defaultStyle = _ref.defaultStyle,
+      availableThemes = _ref.availableThemes,
+      defaultTheme = _ref.defaultTheme,
+      pathResolver = _ref.pathResolver,
+      onSettingsChange = _ref.onSettingsChange,
+      lang = _ref.lang;
     _classCallCheck(this, TemplateCustomizer);
-
     if (this._ssr) return;
     if (!window.Helpers) throw new Error('window.Helpers required.');
     this.settings = {};
@@ -585,57 +576,41 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     this.settings.styles = styles || STYLES;
     this.settings.defaultStyle = defaultStyle || DEFAULT_STYLE;
     this.settings.lang = lang || 'en';
-
     this.pathResolver = pathResolver || function (p) {
       return p;
     };
-
     if (this.settings.styles.length < 2) {
       var i = this.settings.controls.indexOf('style');
-
       if (i !== -1) {
         this.settings.controls = this.settings.controls.slice(0, i).concat(this.settings.controls.slice(i + 1));
       }
     }
-
     this.settings.onSettingsChange = typeof onSettingsChange === 'function' ? onSettingsChange : function () {};
-
     this._loadSettings();
-
     this._listeners = [];
     this._controls = {};
-
     this._initDirection();
-
     this._initStyle();
-
     this._initTheme();
-
     this.setLayoutType(this.settings.layoutType, false);
     this.setLayoutMenuFlipped(this.settings.layoutMenuFlipped, false);
     this.setDropdownOnHover(this.settings.showDropdownOnHover, false);
     this.setLayoutNavbarFixed(this.settings.layoutNavbarFixed, false);
     this.setLayoutFooterFixed(this.settings.layoutFooterFixed, false);
-
     this._setup();
   }
-
   _createClass(TemplateCustomizer, [{
     key: "setRtl",
     value: function setRtl(rtl) {
       if (!this._hasControls('rtl')) return;
-
       this._setSetting('Rtl', String(rtl));
-
       window.location.reload();
     }
   }, {
     key: "setStyle",
     value: function setStyle(style) {
       if (!this._hasControls('style')) return;
-
       this._setSetting('Style', ['dark'].indexOf(style) === -1 ? 'light' : style);
-
       window.location.reload();
     }
   }, {
@@ -644,16 +619,12 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       var updateStorage = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       if (!this._hasControls('themes')) return;
-
       var theme = this._getThemeByName(themeName);
-
       if (!theme) return;
       this.settings.theme = theme;
       if (updateStorage) this._setSetting('Theme', themeName);
       var themeUrl = this.pathResolver(this.settings.themesPath + this.settings.cssFilenamePattern.replace('%name%', themeName + (this.settings.style !== 'light' ? "-".concat(this.settings.style) : '')));
-
       this._loadStylesheets(_defineProperty({}, themeUrl, document.querySelector('.template-customizer-theme-css')), cb || function () {});
-
       if (updateStorage) this.settings.onSettingsChange.call(this, this.settings);
     }
   }, {
@@ -665,11 +636,11 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       this.settings.layoutType = pos;
       if (updateStorage) this._setSetting('LayoutType', pos);
       window.Helpers.setPosition(pos === 'fixed' || pos === 'fixed-offcanvas', pos === 'static-offcanvas' || pos === 'fixed-offcanvas');
-      if (updateStorage) this.settings.onSettingsChange.call(this, this.settings); // Perfectscrollbar change on Layout change
+      if (updateStorage) this.settings.onSettingsChange.call(this, this.settings);
 
+      // Perfectscrollbar change on Layout change
       var menuScroll = window.Helpers.menuPsScroll;
       var PerfectScrollbarLib = window.PerfectScrollbar;
-
       if (this.settings.layoutType === 'fixed' || this.settings.layoutType === 'fixed-offcanvas') {
         // Set perfectscrollbar wheelPropagation false for fixed layout
         if (PerfectScrollbarLib && menuScroll) {
@@ -702,19 +673,17 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       if (!this._hasControls('showDropdownOnHover')) return;
       this.settings.showDropdownOnHover = open;
       if (updateStorage) this._setSetting('ShowDropdownOnHover', open);
-
       if (window.Helpers.mainMenu) {
         window.Helpers.mainMenu.destroy();
         config.showDropdownOnHover = open;
         var _window = window,
-            Menu = _window.Menu;
+          Menu = _window.Menu;
         window.Helpers.mainMenu = new Menu(document.getElementById('layout-menu'), {
           orientation: 'horizontal',
           closeChildren: true,
           showDropdownOnHover: config.showDropdownOnHover
         });
       }
-
       if (updateStorage) this.settings.onSettingsChange.call(this, this.settings);
     }
   }, {
@@ -741,28 +710,25 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     key: "setLang",
     value: function setLang(lang) {
       var _this = this;
-
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       if (lang === this.settings.lang && !force) return;
       if (!TemplateCustomizer.LANGUAGES[lang]) throw new Error("Language \"".concat(lang, "\" not found!"));
       var t = TemplateCustomizer.LANGUAGES[lang];
       ['panel_header', 'panel_sub_header', 'theming_header', 'theme_header', 'style_label', 'style_switch_light', 'style_switch_dark', 'layout_header', 'layout_label', 'layout_static', 'layout_offcanvas', 'layout_fixed', 'layout_fixed_offcanvas', 'layout_flipped_label', 'layout_dd_open_label', 'layout_navbar_label', 'layout_footer_label', 'misc_header', 'theme_label', 'rtl_label'].forEach(function (key) {
-        var el = _this.container.querySelector(".template-customizer-t-".concat(key)); // eslint-disable-next-line no-unused-expressions
-
-
+        var el = _this.container.querySelector(".template-customizer-t-".concat(key));
+        // eslint-disable-next-line no-unused-expressions
         el && (el.textContent = t[key]);
       });
       var tt = t.themes || {};
       var themes = this.container.querySelectorAll('.template-customizer-theme-item') || [];
-
       for (var i = 0, l = themes.length; i < l; i++) {
         var themeName = themes[i].querySelector('input[type="radio"]').value;
         themes[i].querySelector('.template-customizer-theme-name').textContent = tt[themeName] || this._getThemeByName(themeName).title;
       }
-
       this.settings.lang = lang;
-    } // Update theme settings control
+    }
 
+    // Update theme settings control
   }, {
     key: "update",
     value: function update() {
@@ -772,58 +738,44 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       var hasHorizontalMenu = !!document.querySelector('.layout-menu-horizontal.menu, .layout-menu-horizontal .menu');
       var isLayout1 = !!document.querySelector('.layout-wrapper.layout-navbar-full');
       var hasFooter = !!document.querySelector('.content-footer');
-
       if (this._controls.layoutMenuFlipped) {
         if (!hasMenu) {
           this._controls.layoutMenuFlipped.setAttribute('disabled', 'disabled');
-
           this._controls.layoutMenuFlipped.classList.add('disabled');
         } else {
           this._controls.layoutMenuFlipped.removeAttribute('disabled');
-
           this._controls.layoutMenuFlipped.classList.remove('disabled');
         }
       }
-
       if (this._controls.showDropdownOnHover) {
         if (hasMenu) {
           this._controls.showDropdownOnHover.setAttribute('disabled', 'disabled');
-
           this._controls.showDropdownOnHover.classList.add('disabled');
         } else {
           this._controls.showDropdownOnHover.removeAttribute('disabled');
-
           this._controls.showDropdownOnHover.classList.remove('disabled');
         }
       }
-
       if (this._controls.layoutNavbarFixed) {
         if (!hasNavbar) {
           this._controls.layoutNavbarFixed.setAttribute('disabled', 'disabled');
-
           this._controls.layoutNavbarFixedW.classList.add('disabled');
         } else {
           this._controls.layoutNavbarFixed.removeAttribute('disabled');
-
           this._controls.layoutNavbarFixedW.classList.remove('disabled');
         }
       }
-
       if (this._controls.layoutFooterFixed) {
         if (!hasFooter) {
           this._controls.layoutFooterFixed.setAttribute('disabled', 'disabled');
-
           this._controls.layoutFooterFixedW.classList.add('disabled');
         } else {
           this._controls.layoutFooterFixed.removeAttribute('disabled');
-
           this._controls.layoutFooterFixedW.classList.remove('disabled');
         }
       }
-
       if (this._controls.layoutType) {
         // ? Uncomment If using offcanvas layout
-
         /*
         if (!hasMenu) {
           this._controls.layoutType.querySelector('[value="static-offcanvas"]').setAttribute('disabled', 'disabled')
@@ -833,53 +785,45 @@ var TemplateCustomizer = /*#__PURE__*/function () {
           this._controls.layoutType.querySelector('[value="fixed-offcanvas"]').removeAttribute('disabled')
         }
         */
+
         // Disable menu layouts options if menu is not there
         if (!hasNavbar && !hasMenu || !hasMenu && !isLayout1) {
           this._controls.layoutType.setAttribute('disabled', 'disabled');
         } else {
           this._controls.layoutType.removeAttribute('disabled');
-        } // Todo: horizontal menu does not support menu static & fixed, semi-dark theme options
+        }
 
-
+        // Todo: horizontal menu does not support menu static & fixed, semi-dark theme options
         if (hasHorizontalMenu) {
           this._controls.layoutType.setAttribute('disabled', 'disabled');
-
           document.getElementById('themeRadiostheme-semi-dark').setAttribute('disabled', 'disabled');
         } else {
           this._controls.layoutType.removeAttribute('disabled');
-
           document.getElementById('themeRadiostheme-semi-dark').removeAttribute('disabled', 'disabled');
         }
       }
-    } // Clear local storage
+    }
 
+    // Clear local storage
   }, {
     key: "clearLocalStorage",
     value: function clearLocalStorage() {
       if (this._ssr) return;
-
       this._setSetting('Theme', '');
-
       this._setSetting('Rtl', '');
-
       this._setSetting('Style', '');
-
       this._setSetting('MenuFlipped', '');
-
       this._setSetting('FixedNavbar', '');
-
       this._setSetting('FixedFooter', '');
-
       this._setSetting('LayoutType', '');
-    } // Clear local storage
+    }
 
+    // Clear local storage
   }, {
     key: "destroy",
     value: function destroy() {
       if (this._ssr) return;
-
       this._cleanup();
-
       this.settings = null;
       this.container.parentNode.removeChild(this.container);
       this.container = null;
@@ -888,50 +832,39 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     key: "_loadSettings",
     value: function _loadSettings() {
       // Get settings
+
       // const cl = document.documentElement.classList;
       var rtl = this._getSetting('Rtl');
-
       var style = this._getSetting('Style');
-
       var collapsedMenu = this._getSetting('LayoutCollapsed'); // Value will be set from main.js
-
-
       var flippedMenu = this._getSetting('LayoutMenuFlipped');
-
       var dropdownOnHover = this._getSetting('ShowDropdownOnHover'); // Value will be set from main.js
-
-
       var fixedNavbar = this._getSetting('FixedNavbar');
-
       var fixedFooter = this._getSetting('FixedFooter');
-
       var lType = this._getSetting('LayoutType');
-
       var type;
-
       if (lType !== '' && ['static', 'static-offcanvas', 'fixed', 'fixed-offcanvas'].indexOf(lType) !== -1) {
         type = lType;
       } else {
         type = this.settings.defaultLayoutType;
       }
+      this.settings.layoutType = type;
 
-      this.settings.layoutType = type; // ! Set settings by following priority: Local Storage, Theme Config, HTML Classes
-
+      // ! Set settings by following priority: Local Storage, Theme Config, HTML Classes
       this.settings.rtl = rtl !== '' ? rtl === 'true' : this.settings.defaultTextDir;
       this.settings.style = this.settings.styles.indexOf(style) !== -1 ? style : this.settings.defaultStyle;
-
       if (this.settings.styles.indexOf(this.settings.style) === -1) {
         // eslint-disable-next-line prefer-destructuring
         this.settings.style = this.settings.styles[0];
       }
-
       this.settings.layoutMenu = collapsedMenu !== '' ? collapsedMenu === 'true' : this.settings.defaultMenuCollapsed;
       this.settings.layoutMenuFlipped = flippedMenu !== '' ? flippedMenu === 'true' : this.settings.defaultMenuFlipped;
       this.settings.showDropdownOnHover = dropdownOnHover !== '' ? dropdownOnHover === 'true' : this.settings.defaultShowDropdownOnHover;
       this.settings.layoutNavbarFixed = fixedNavbar !== '' ? fixedNavbar === 'true' : this.settings.defaultNavbarFixed;
       this.settings.layoutFooterFixed = fixedFooter !== '' ? fixedFooter === 'true' : this.settings.defaultFooterFixed;
-      this.settings.theme = this._getThemeByName(this._getSetting('Theme'), true); // Filter options depending on available controls
+      this.settings.theme = this._getThemeByName(this._getSetting('Theme'), true);
 
+      // Filter options depending on available controls
       if (!this._hasControls('rtl')) this.settings.rtl = document.documentElement.getAttribute('dir') === 'rtl';
       if (!this._hasControls('style')) this.settings.style = cl.contains('dark-style') ? 'dark' : 'light';
       if (!this._hasControls('layoutType')) this.settings.layoutType = null;
@@ -940,162 +873,141 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       if (!this._hasControls('layoutNavbarFixed')) this.settings.layoutNavbarFixed = null;
       if (!this._hasControls('layoutFooterFixed')) this.settings.layoutFooterFixed = null;
       if (!this._hasControls('themes')) this.settings.theme = null;
-    } // Setup theme settings controls and events
+    }
 
+    // Setup theme settings controls and events
   }, {
     key: "_setup",
     value: function _setup() {
       var _this2 = this;
-
       var _container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document;
-
       this._cleanup();
+      this.container = this._getElementFromString((_template_customizer_template_customizer_html__WEBPACK_IMPORTED_MODULE_1___default()));
 
-      this.container = this._getElementFromString((_template_customizer_template_customizer_html__WEBPACK_IMPORTED_MODULE_1___default())); // Customizer visibility condition
+      // Customizer visibility condition
       //
-
       var customizerW = this.container;
-      if (this.settings.displayCustomizer) customizerW.setAttribute('style', 'visibility: visible');else customizerW.setAttribute('style', 'visibility: hidden'); // Open btn
+      if (this.settings.displayCustomizer) customizerW.setAttribute('style', 'visibility: visible');else customizerW.setAttribute('style', 'visibility: hidden');
+
+      // Open btn
       //
-
       var openBtn = this.container.querySelector('.template-customizer-open-btn');
-
       var openBtnCb = function openBtnCb() {
         _this2.container.classList.add('template-customizer-open');
-
         _this2.update();
-
         if (_this2._updateInterval) clearInterval(_this2._updateInterval);
         _this2._updateInterval = setInterval(function () {
           _this2.update();
         }, 1000);
       };
-
       openBtn.addEventListener('click', openBtnCb);
+      this._listeners.push([openBtn, 'click', openBtnCb]);
 
-      this._listeners.push([openBtn, 'click', openBtnCb]); // Close btn
+      // Close btn
       //
 
-
       var closeBtn = this.container.querySelector('.template-customizer-close-btn');
-
       var closeBtnCb = function closeBtnCb() {
         _this2.container.classList.remove('template-customizer-open');
-
         if (_this2._updateInterval) {
           clearInterval(_this2._updateInterval);
           _this2._updateInterval = null;
         }
       };
-
       closeBtn.addEventListener('click', closeBtnCb);
+      this._listeners.push([closeBtn, 'click', closeBtnCb]);
 
-      this._listeners.push([closeBtn, 'click', closeBtnCb]); // RTL
+      // RTL
       //
 
-
-      var rtlW = this.container.querySelector('.template-customizer-rtl'); // ? Hide RTL control in following 2 case
-
+      var rtlW = this.container.querySelector('.template-customizer-rtl');
+      // ? Hide RTL control in following 2 case
       if (!this._hasControls('rtl') || !rtlSupport) {
         rtlW.parentNode.removeChild(rtlW);
       } else {
         var rtl = rtlW.querySelector('input');
         if (this.settings.rtl) rtl.setAttribute('checked', 'checked');
-
         var rtlCb = function rtlCb(e) {
           _this2._loadingState(true);
-
           _this2.setRtl(e.target.checked);
         };
-
         rtl.addEventListener('change', rtlCb);
-
         this._listeners.push([rtl, 'change', rtlCb]);
-      } // Style
+      }
+
+      // Style
+
       //
 
-
       var styleW = this.container.querySelector('.template-customizer-style');
-
       if (!this._hasControls('style')) {
         styleW.parentNode.removeChild(styleW);
       } else {
         var style = styleW.querySelector('input');
         if (this.settings.style === 'dark') style.setAttribute('checked', 'checked');
-
         var styleCb = function styleCb(e) {
           _this2._loadingState(true);
-
           if (e.target.checked) {
             _this2.setStyle('dark');
           } else {
             _this2.setStyle('light');
           }
         };
-
         style.addEventListener('change', styleCb);
-
         this._listeners.push([style, 'change', styleCb]);
-      } // Theme
+      }
 
+      // Theme
 
       var themesW = this.container.querySelector('.template-customizer-themes');
-
       if (!this._hasControls('themes')) {
         themesW.parentNode.removeChild(themesW);
       } else {
         var themesWInner = themesW.querySelector('.template-customizer-themes-options');
         this.settings.availableThemes.forEach(function (theme) {
           var themeEl = _this2._getElementFromString("<div class=\"col-12\"><div class=\"form-check\"><input class=\"form-check-input\" type=\"radio\" name=\"themeRadios\" id=\"themeRadios".concat(theme.name, "\" value=\"").concat(theme.name, "\"><label class=\"form-check-label\" for=\"themeRadios").concat(theme.name, "\">").concat(theme.title, "</label></div></div>"));
-
           themesWInner.appendChild(themeEl);
         });
         themesWInner.querySelector("input[value=\"".concat(this.settings.theme.name, "\"]")).setAttribute('checked', 'checked');
-
         var themeCb = function themeCb(e) {
           if (_this2._loading) return;
           _this2._loading = true;
-
           _this2._loadingState(true, true);
-
           _this2.setTheme(e.target.value, true, function () {
             _this2._loading = false;
-
             _this2._loadingState(false, true);
           });
         };
-
         themesWInner.addEventListener('change', themeCb);
-
         this._listeners.push([themesWInner, 'change', themeCb]);
-      } // Layout wrapper
+      }
+
+      // Layout wrapper
       //
 
-
       var layoutW = this.container.querySelector('.template-customizer-layout');
-
       if (!this._hasControls('layoutType layoutNavbarFixed layoutFooterFixed layoutMenuFlipped showDropdownOnHover', true)) {
         layoutW.parentNode.removeChild(layoutW);
       } else {
         // Position
         //
-        var layoutTypeW = this.container.querySelector('.template-customizer-layoutType');
 
+        var layoutTypeW = this.container.querySelector('.template-customizer-layoutType');
         if (!this._hasControls('layoutType')) {
           layoutTypeW.parentNode.removeChild(layoutTypeW);
         } else {
-          this._controls.layoutType = layoutTypeW.querySelector('.template-customizer-layouts-options'); // this._controls.layoutType.value = this.settings.layoutType
+          this._controls.layoutType = layoutTypeW.querySelector('.template-customizer-layouts-options');
 
+          // this._controls.layoutType.value = this.settings.layoutType
           this._controls.layoutType.querySelector("input[value=\"".concat(this.settings.layoutType, "\"]")).setAttribute('checked', 'checked');
-
           var layoutTypeCb = function layoutTypeCb(e) {
             return _this2.setLayoutType(e.target.value);
           };
-
           this._controls.layoutType.addEventListener('change', layoutTypeCb);
-
           this._listeners.push([this._controls.layoutType, 'change', layoutTypeCb]);
-        } // Menu flipped
+        }
+
+        // Menu flipped
         // ? Uncomment If needed
 
         /* this._controls.layoutMenuFlipped = this.container.querySelector('.template-customizer-layoutMenuFlipped')
@@ -1108,69 +1020,60 @@ var TemplateCustomizer = /*#__PURE__*/function () {
           this._controls.layoutMenuFlipped.addEventListener('change', layoutMenuFlipped)
           this._listeners.push([this._controls.layoutMenuFlipped, 'change', layoutMenuFlipped])
         } */
+
         // Menu open
         //
 
-
         this._controls.showDropdownOnHover = this.container.querySelector('.template-customizer-showDropdownOnHover');
-
         if (!this._hasControls('showDropdownOnHover')) {
           this._controls.showDropdownOnHover.parentNode.removeChild(this._controls.showDropdownOnHover);
         } else {
           this._controls.showDropdownOnHover = this._controls.showDropdownOnHover.querySelector('input');
           if (this.settings.showDropdownOnHover) this._controls.showDropdownOnHover.setAttribute('checked', 'checked');
-
           var showDropdownOnHover = function showDropdownOnHover(e) {
             return _this2.setDropdownOnHover(e.target.checked);
           };
-
           this._controls.showDropdownOnHover.addEventListener('change', showDropdownOnHover);
-
           this._listeners.push([this._controls.showDropdownOnHover, 'change', showDropdownOnHover]);
-        } // Navbar
+        }
+
+        // Navbar
         //
 
-
         this._controls.layoutNavbarFixedW = this.container.querySelector('.template-customizer-layoutNavbarFixed');
-
         if (!this._hasControls('layoutNavbarFixed')) {
           this._controls.layoutNavbarFixedW.parentNode.removeChild(this._controls.layoutNavbarFixedW);
         } else {
           this._controls.layoutNavbarFixed = this._controls.layoutNavbarFixedW.querySelector('input');
           if (this.settings.layoutNavbarFixed) this._controls.layoutNavbarFixed.setAttribute('checked', 'checked');
-
           var layoutNavbarFixedCb = function layoutNavbarFixedCb(e) {
             return _this2.setLayoutNavbarFixed(e.target.checked);
           };
-
           this._controls.layoutNavbarFixed.addEventListener('change', layoutNavbarFixedCb);
-
           this._listeners.push([this._controls.layoutNavbarFixed, 'change', layoutNavbarFixedCb]);
-        } // Footer
+        }
+
+        // Footer
         //
 
-
         this._controls.layoutFooterFixedW = this.container.querySelector('.template-customizer-layoutFooterFixed');
-
         if (!this._hasControls('layoutFooterFixed')) {
           this._controls.layoutFooterFixedW.parentNode.removeChild(this._controls.layoutFooterFixedW);
         } else {
           this._controls.layoutFooterFixed = this._controls.layoutFooterFixedW.querySelector('input');
           if (this.settings.layoutFooterFixed) this._controls.layoutFooterFixed.setAttribute('checked', 'checked');
-
           var layoutFooterFixedCb = function layoutFooterFixedCb(e) {
             return _this2.setLayoutFooterFixed(e.target.checked);
           };
-
           this._controls.layoutFooterFixed.addEventListener('change', layoutFooterFixedCb);
-
           this._listeners.push([this._controls.layoutFooterFixed, 'change', layoutFooterFixedCb]);
         }
-      } // Set language
+      }
 
+      // Set language
+      this.setLang(this.settings.lang, true);
 
-      this.setLang(this.settings.lang, true); // Append container
-
+      // Append container
       if (_container === document) {
         if (_container.body) {
           _container.body.appendChild(this.container);
@@ -1187,16 +1090,16 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     key: "_initDirection",
     value: function _initDirection() {
       if (this._hasControls('rtl')) document.documentElement.setAttribute('dir', this.settings.rtl ? 'rtl' : 'ltr');
-    } // Init template styles
+    }
 
+    // Init template styles
   }, {
     key: "_initStyle",
     value: function _initStyle() {
       if (!this._hasControls('style')) return;
       var style = this.settings.style;
-
-      this._insertStylesheet('template-customizer-core-css', this.pathResolver(this.settings.cssPath + this.settings.cssFilenamePattern.replace('%name%', "core".concat(style !== 'light' ? "-".concat(style) : '')))); // ? Uncomment if needed
-
+      this._insertStylesheet('template-customizer-core-css', this.pathResolver(this.settings.cssPath + this.settings.cssFilenamePattern.replace('%name%', "core".concat(style !== 'light' ? "-".concat(style) : ''))));
+      // ? Uncomment if needed
       /*
       this._insertStylesheet(
         'template-customizer-bootstrap-css',
@@ -1231,14 +1134,14 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       )
       */
 
-
       var classesToRemove = style === 'light' ? ['dark-style'] : ['light-style'];
       classesToRemove.forEach(function (cls) {
         document.documentElement.classList.remove(cls);
       });
       document.documentElement.classList.add("".concat(style, "-style"));
-    } // Init theme style
+    }
 
+    // Init theme style
   }, {
     key: "_initTheme",
     value: function _initTheme() {
@@ -1247,7 +1150,6 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       } else {
         // If theme control is not enabled, get the current theme from localstorage else display default theme
         var theme = this._getSetting('Theme');
-
         this._insertStylesheet('template-customizer-theme-css', this.pathResolver(this.settings.themesPath + this.settings.cssFilenamePattern.replace('%name%', theme ? theme : 'theme-default' + (this.settings.style !== 'light' ? "-".concat(this.settings.style) : ''))));
       }
     }
@@ -1255,7 +1157,6 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     key: "_insertStylesheet",
     value: function _insertStylesheet(className, href) {
       var curLink = document.querySelector(".".concat(className));
-
       if (typeof document.documentMode === 'number' && document.documentMode < 11) {
         if (!curLink) return;
         if (href === curLink.getAttribute('href')) return;
@@ -1268,7 +1169,6 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       } else {
         document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"".concat(href, "\" class=\"").concat(className, "\">"));
       }
-
       curLink.parentNode.removeChild(curLink);
     }
   }, {
@@ -1277,7 +1177,6 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       var paths = Object.keys(stylesheets);
       var count = paths.length;
       var loaded = 0;
-
       function loadStylesheet(path, curLink, _cb) {
         var link = document.createElement('link');
         link.setAttribute('href', path);
@@ -1291,7 +1190,6 @@ var TemplateCustomizer = /*#__PURE__*/function () {
           clearInterval(intervalId);
           clearTimeout(timeoutId);
           curLink.parentNode.removeChild(link);
-
           _cb(false, path);
         }, 15000);
         intervalId = setInterval(function () {
@@ -1300,21 +1198,19 @@ var TemplateCustomizer = /*#__PURE__*/function () {
               clearInterval(intervalId);
               clearTimeout(timeoutId);
               curLink.parentNode.removeChild(curLink);
-
               _cb(true);
             }
-          } catch (e) {// Catch error
+          } catch (e) {
+            // Catch error
           }
         }, 10);
         curLink.parentNode.insertBefore(link, curLink.nextSibling);
       }
-
       function stylesheetCallBack() {
         if ((loaded += 1) >= count) {
           cb();
         }
       }
-
       for (var i = 0; i < paths.length; i++) {
         loadStylesheet(paths[i], stylesheets[paths[i]], stylesheetCallBack());
       }
@@ -1330,34 +1226,35 @@ var TemplateCustomizer = /*#__PURE__*/function () {
       var wrapper = document.createElement('div');
       wrapper.innerHTML = str;
       return wrapper.firstChild;
-    } // Set settings in LocalStorage with layout & key
+    }
 
+    // Set settings in LocalStorage with layout & key
   }, {
     key: "_getSetting",
     value: function _getSetting(key) {
       var result = null;
-
       var layoutName = this._getLayoutName();
-
       try {
         result = localStorage.getItem("templateCustomizer-".concat(layoutName, "--").concat(key));
-      } catch (e) {// Catch error
+      } catch (e) {
+        // Catch error
       }
-
       return String(result || '');
-    } // Set settings in LocalStorage with layout & key
+    }
 
+    // Set settings in LocalStorage with layout & key
   }, {
     key: "_setSetting",
     value: function _setSetting(key, val) {
       var layoutName = this._getLayoutName();
-
       try {
         localStorage.setItem("templateCustomizer-".concat(layoutName, "--").concat(key), String(val));
-      } catch (e) {// Catch Error
+      } catch (e) {
+        // Catch Error
       }
-    } // Get layout name to set unique
+    }
 
+    // Get layout name to set unique
   }, {
     key: "_getLayoutName",
     value: function _getLayoutName() {
@@ -1374,10 +1271,8 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     key: "_cleanup",
     value: function _cleanup() {
       this._removeListeners();
-
       this._listeners = [];
       this._controls = {};
-
       if (this._updateInterval) {
         clearInterval(this._updateInterval);
         this._updateInterval = null;
@@ -1387,65 +1282,58 @@ var TemplateCustomizer = /*#__PURE__*/function () {
     key: "_ssr",
     get: function get() {
       return typeof window === 'undefined';
-    } // Check controls availability
+    }
 
+    // Check controls availability
   }, {
     key: "_hasControls",
     value: function _hasControls(controls) {
       var _this3 = this;
-
       var oneOf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       return controls.split(' ').reduce(function (result, control) {
         if (_this3.settings.controls.indexOf(control) !== -1) {
           if (oneOf || result !== false) result = true;
         } else if (!oneOf || result !== true) result = false;
-
         return result;
       }, null);
-    } // Get the default theme
+    }
 
+    // Get the default theme
   }, {
     key: "_getDefaultTheme",
     value: function _getDefaultTheme(themeId) {
-      var theme; //! Fix: If horizontal layout and selected layout is semi-dark then set layout default
-
+      var theme;
+      //! Fix: If horizontal layout and selected layout is semi-dark then set layout default
       if (document.querySelector('[data-template="horizontal-menu-template"]')) {
         if (themeId === 1) {
           themeId = 0;
         }
       }
-
       if (typeof themeId === 'string') {
         theme = this._getThemeByName(themeId, false);
       } else {
         theme = this.settings.availableThemes[themeId];
       }
-
       if (!theme) {
         throw new Error("Theme ID \"".concat(themeId, "\" not found!"));
       }
-
       return theme;
-    } // Get theme by themeId/themeName
+    }
 
+    // Get theme by themeId/themeName
   }, {
     key: "_getThemeByName",
     value: function _getThemeByName(themeName) {
       var returnDefault = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var themes = this.settings.availableThemes;
-
       for (var i = 0, l = themes.length; i < l; i++) {
         if (themes[i].name === themeName) return themes[i];
       }
-
       return returnDefault ? this.settings.defaultTheme : null;
     }
   }]);
-
   return TemplateCustomizer;
 }(); // Themes
-
-
 TemplateCustomizer.THEMES = [{
   name: 'theme-default',
   title: 'Default'
@@ -1455,8 +1343,9 @@ TemplateCustomizer.THEMES = [{
 }, {
   name: 'theme-bordered',
   title: 'Bordered'
-}]; // Theme setting language
+}];
 
+// Theme setting language
 TemplateCustomizer.LANGUAGES = {
   en: {
     panel_header: 'TEMPLATE CUSTOMIZER',

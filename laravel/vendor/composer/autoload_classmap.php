@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\FileController' => $baseDir . '/app/Http/Controllers/FileController.php',
     'App\\Http\\Controllers\\MovieController' => $baseDir . '/app/Http/Controllers/MovieController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
+    'App\\Http\\Controllers\\TokenController' => $baseDir . '/app/Http/Controllers/TokenController.php',
     'App\\Http\\Controllers\\authentications\\LoginBasic' => $baseDir . '/app/Http/Controllers/authentications/LoginBasic.php',
     'App\\Http\\Controllers\\authentications\\RegisterBasic' => $baseDir . '/app/Http/Controllers/authentications/RegisterBasic.php',
     'App\\Http\\Controllers\\pages\\HomePage' => $baseDir . '/app/Http/Controllers/pages/HomePage.php',

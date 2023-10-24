@@ -7,30 +7,32 @@ var __webpack_exports__ = {};
 /**
  * Page User List
  */
- // Datatable (jquery)
 
+
+
+// Datatable (jquery)
 $(function () {
   // Variable declaration for table
   var dt_user_table = $('.datatables-users'),
-      select2 = $('.select2'),
-      userView = baseUrl + 'app/user/view/account',
-      offCanvasForm = $('#offcanvasAddUser');
-
+    select2 = $('.select2'),
+    userView = baseUrl + 'app/user/view/account',
+    offCanvasForm = $('#offcanvasAddUser');
   if (select2.length) {
     var $this = select2;
     $this.wrap('<div class="position-relative"></div>').select2({
       placeholder: 'Select Country',
       dropdownParent: $this.parent()
     });
-  } // ajax setup
+  }
 
-
+  // ajax setup
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  }); // Users datatable
+  });
 
+  // Users datatable
   if (dt_user_table.length) {
     var dt_user = dt_user_table.DataTable({
       processing: true,
@@ -38,7 +40,8 @@ $(function () {
       ajax: {
         url: baseUrl + 'user-list'
       },
-      columns: [// columns according to JSON
+      columns: [
+      // columns according to JSON
       {
         data: ''
       }, {
@@ -74,17 +77,19 @@ $(function () {
         targets: 2,
         responsivePriority: 4,
         render: function render(data, type, full, meta) {
-          var $name = full['name']; // For Avatar badge
+          var $name = full['name'];
 
+          // For Avatar badge
           var stateNum = Math.floor(Math.random() * 6);
           var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
           var $state = states[stateNum],
-              $name = full['name'],
-              $initials = $name.match(/\b\w/g) || [],
-              $output;
+            $name = full['name'],
+            $initials = $name.match(/\b\w/g) || [],
+            $output;
           $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
-          $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>'; // Creates full output for row
+          $output = '<span class="avatar-initial rounded-circle bg-label-' + $state + '">' + $initials + '</span>';
 
+          // Creates full output for row
           var $row_output = '<div class="d-flex justify-content-start align-items-center user-name">' + '<div class="avatar-wrapper">' + '<div class="avatar avatar-sm me-3">' + $output + '</div>' + '</div>' + '<div class="d-flex flex-column">' + '<a href="' + userView + '" class="text-body text-truncate"><span class="fw-semibold">' + $name + '</span></a>' + '</div>' + '</div>';
           return $row_output;
         }
@@ -269,18 +274,19 @@ $(function () {
         }
       }
     });
-  } // Delete Record
+  }
 
-
+  // Delete Record
   $(document).on('click', '.delete-record', function () {
     var user_id = $(this).data('id'),
-        dtrModal = $('.dtr-bs-modal.show'); // hide responsive modal in small screen
+      dtrModal = $('.dtr-bs-modal.show');
 
+    // hide responsive modal in small screen
     if (dtrModal.length) {
       dtrModal.modal('hide');
-    } // sweetalert for confirmation of delete
+    }
 
-
+    // sweetalert for confirmation of delete
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -304,8 +310,9 @@ $(function () {
           error: function error(_error) {
             console.log(_error);
           }
-        }); // success sweetalert
+        });
 
+        // success sweetalert
         Swal.fire({
           icon: 'success',
           title: 'Deleted!',
@@ -325,40 +332,46 @@ $(function () {
         });
       }
     });
-  }); // edit record
+  });
 
+  // edit record
   $(document).on('click', '.edit-record', function () {
     var user_id = $(this).data('id'),
-        dtrModal = $('.dtr-bs-modal.show'); // hide responsive modal in small screen
+      dtrModal = $('.dtr-bs-modal.show');
 
+    // hide responsive modal in small screen
     if (dtrModal.length) {
       dtrModal.modal('hide');
-    } // changing the title of offcanvas
+    }
 
+    // changing the title of offcanvas
+    $('#offcanvasAddUserLabel').html('Edit User');
 
-    $('#offcanvasAddUserLabel').html('Edit User'); // get data
-
+    // get data
     $.get("".concat(baseUrl, "user-list/").concat(user_id, "/edit"), function (data) {
       $('#user_id').val(data.id);
       $('#add-user-fullname').val(data.name);
       $('#add-user-email').val(data.email);
     });
-  }); // changing the title
+  });
 
+  // changing the title
   $('.add-new').on('click', function () {
     $('#user_id').val(''); //reseting input field
-
     $('#offcanvasAddUserLabel').html('Add User');
-  }); // Filter form control to default size
-  // ? setTimeout used for multilingual table initialization
+  });
 
+  // Filter form control to default size
+  // ? setTimeout used for multilingual table initialization
   setTimeout(function () {
     $('.dataTables_filter .form-control').removeClass('form-control-sm');
     $('.dataTables_length .form-select').removeClass('form-select-sm');
-  }, 300); // validating form and updating user's data
+  }, 300);
 
-  var addNewUserForm = document.getElementById('addNewUserForm'); // user form validation
+  // validating form and updating user's data
+  var addNewUserForm = document.getElementById('addNewUserForm');
 
+  // user form validation
   var fv = FormValidation.formValidation(addNewUserForm, {
     fields: {
       name: {
@@ -416,8 +429,9 @@ $(function () {
       type: 'POST',
       success: function success(status) {
         dt_user.draw();
-        offCanvasForm.offcanvas('hide'); // sweetalert
+        offCanvasForm.offcanvas('hide');
 
+        // sweetalert
         Swal.fire({
           icon: 'success',
           title: "Successfully ".concat(status, "!"),
@@ -439,13 +453,15 @@ $(function () {
         });
       }
     });
-  }); // clearing form data when offcanvas hidden
+  });
 
+  // clearing form data when offcanvas hidden
   offCanvasForm.on('hidden.bs.offcanvas', function () {
     fv.resetForm(true);
   });
-  var phoneMaskList = document.querySelectorAll('.phone-mask'); // Phone Number
+  var phoneMaskList = document.querySelectorAll('.phone-mask');
 
+  // Phone Number
   if (phoneMaskList) {
     phoneMaskList.forEach(function (phoneMask) {
       new Cleave(phoneMask, {

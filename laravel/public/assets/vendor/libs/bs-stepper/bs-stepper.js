@@ -520,30 +520,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bs_stepper_dist_js_bs_stepper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bs-stepper/dist/js/bs-stepper */ "./node_modules/bs-stepper/dist/js/bs-stepper.js");
 /* harmony import */ var bs_stepper_dist_js_bs_stepper__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bs_stepper_dist_js_bs_stepper__WEBPACK_IMPORTED_MODULE_0__);
 
-var bsStepper = document.querySelectorAll('.bs-stepper'); // Adds crossed class
+var bsStepper = document.querySelectorAll('.bs-stepper');
 
+// Adds crossed class
 bsStepper.forEach(function (el) {
   el.addEventListener('show.bs-stepper', function (event) {
     var index = event.detail.indexStep;
     var numberOfSteps = el.querySelectorAll('.line').length;
-    var line = el.querySelectorAll('.step'); // The first for loop is for increasing the steps,
+    var line = el.querySelectorAll('.step');
+
+    // The first for loop is for increasing the steps,
     // the second is for turning them off when going back
     // and the third with the if statement because the last line
     // can't seem to turn off when I press the first item. ¯\_(ツ)_/¯
 
     for (var i = 0; i < index; i++) {
       line[i].classList.add('crossed');
-
       for (var j = index; j < numberOfSteps; j++) {
         line[j].classList.remove('crossed');
       }
     }
-
     if (event.detail.to == 0) {
       for (var k = index; k < numberOfSteps; k++) {
         line[k].classList.remove('crossed');
       }
-
       line[0].classList.remove('crossed');
     }
   });

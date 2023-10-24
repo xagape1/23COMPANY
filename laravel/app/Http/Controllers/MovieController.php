@@ -50,25 +50,27 @@ class MovieController extends Controller
             'intro' => 'required|mimes:gif,jpeg,jpg,png,mp4',
         ]);
         
-        $title = $request->get('title');
-        $description = $request->get('description');
-        $gender = $request->get('gender');
-        $cover = $request->file('cover');
-        $intro = $request->file('intro');
+        $title          = $request->get('title');
+        $description    = $request->get('description');
+        $gender         = $request->get('gender');
+        $cover          = $request->file('cover');
+        $intro          = $request->file('intro');
     
-        // Guardar los archivos y obtener sus IDs
-        $coverId = $this->saveFileAndGetId($cover);
-        $introId = $this->saveFileAndGetId($intro);
+        $filec = new File();
+        $filecOk = $filec->diskSave($cover);
+
+        $filei = new File();
+        $fileiOk = $filei->diskSave($intro);
     
-        if ($coverId && $introId) {
+        if ($filecOk && $fileiOk ) {
             // Guardar los datos en la BD
             Log::debug("Saving post at DB...");
             $movie = Movie::create([
                 'title' => $title,
                 'description' => $description,
                 'gender' => $gender,
-                'cover_id' => $coverId,
-                'intro_id' => $introId,
+                'cover_id' => $filec->id,
+                'intro_id' => $filei->id,
             ]);
             Log::debug("DB storage OK");
             // Redirigir con mensaje de éxito

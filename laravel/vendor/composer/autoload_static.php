@@ -683,6 +683,7 @@ class ComposerStaticInitb3a2aa840bb3092c3f523e8b832b90c3
         'App\\Http\\Controllers\\FileController' => __DIR__ . '/../..' . '/app/Http/Controllers/FileController.php',
         'App\\Http\\Controllers\\MovieController' => __DIR__ . '/../..' . '/app/Http/Controllers/MovieController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
+        'App\\Http\\Controllers\\TokenController' => __DIR__ . '/../..' . '/app/Http/Controllers/TokenController.php',
         'App\\Http\\Controllers\\authentications\\LoginBasic' => __DIR__ . '/../..' . '/app/Http/Controllers/authentications/LoginBasic.php',
         'App\\Http\\Controllers\\authentications\\RegisterBasic' => __DIR__ . '/../..' . '/app/Http/Controllers/authentications/RegisterBasic.php',
         'App\\Http\\Controllers\\pages\\HomePage' => __DIR__ . '/../..' . '/app/Http/Controllers/pages/HomePage.php',

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\FileController;
@@ -33,7 +34,7 @@ $controller_path = 'App\Http\Controllers';
 });
 
 Route::resource('files', FileController::class)
-->middleware(['auth', 'permission:files']);
+->middleware(['auth']);
 
 Route::resource('profiles', ProfileController::class)->middleware(['auth']);
 

@@ -10528,8 +10528,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone/dist/dropzone */ "./node_modules/dropzone/dist/dropzone.js");
 /* harmony import */ var dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0__);
 
-(dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default().autoDiscover) = false; // File upload progress animation
+(dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default().autoDiscover) = false;
 
+// File upload progress animation
 (dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default().prototype).uploadFiles = function (files) {
   var minSteps = 6;
   var maxSteps = 60;
@@ -10537,11 +10538,9 @@ __webpack_require__.r(__webpack_exports__);
   var bytesPerStep = 100000;
   var isUploadSuccess = true;
   var self = this;
-
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
     var totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
-
     for (var step = 0; step < totalSteps; step++) {
       var duration = timeBetweenSteps * (step + 1);
       setTimeout(function (file, totalSteps, step) {
@@ -10552,7 +10551,6 @@ __webpack_require__.r(__webpack_exports__);
             bytesSent: (step + 1) * file.size / totalSteps
           };
           self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
-
           if (file.upload.progress === 100) {
             if (isUploadSuccess) {
               file.status = (dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default().SUCCESS);
@@ -10561,7 +10559,6 @@ __webpack_require__.r(__webpack_exports__);
               file.status = (dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default().ERROR);
               self.emit('error', file, 'Some upload error', null);
             }
-
             self.emit('complete', file);
             self.processQueue();
           }
@@ -10570,7 +10567,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 };
-
 
 }();
 var __webpack_export_target__ = window;

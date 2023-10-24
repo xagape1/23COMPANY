@@ -1,4 +1,4 @@
-    
+
     @section('movies')
     <div class="container">
     <div class="row justify-content-center">
@@ -9,3 +9,4 @@
     <link href = "https://fonts.googleapis.com/css?family=Montserrat" rel = "stylesheet" >  
     
     @include('partials.movies')
+    

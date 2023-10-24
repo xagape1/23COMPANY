@@ -42,30 +42,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Helpers: function() { return /* binding */ Helpers; }
 /* harmony export */ });
 function _toArray(arr) { return _arrayWithHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableRest(); }
-
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 // Constants
 var TRANS_EVENTS = ['transitionend', 'webkitTransitionEnd', 'oTransitionEnd'];
 var TRANS_PROPERTIES = ['transition', 'MozTransition', 'webkitTransition', 'WebkitTransition', 'OTransition'];
-var INLINE_STYLES = "\n.layout-menu-fixed .layout-navbar-full .layout-menu,\n.layout-menu-fixed-offcanvas .layout-navbar-full .layout-menu {\n  top: {navbarHeight}px !important;\n}\n.layout-page {\n  padding-top: {navbarHeight}px !important;\n}\n.content-wrapper {\n  padding-bottom: {footerHeight}px !important;\n}"; // Guard
+var INLINE_STYLES = "\n.layout-menu-fixed .layout-navbar-full .layout-menu,\n.layout-menu-fixed-offcanvas .layout-navbar-full .layout-menu {\n  top: {navbarHeight}px !important;\n}\n.layout-page {\n  padding-top: {navbarHeight}px !important;\n}\n.content-wrapper {\n  padding-bottom: {footerHeight}px !important;\n}";
 
+// Guard
 function requiredParam(name) {
   throw new Error("Parameter required".concat(name ? ": `".concat(name, "`") : ''));
 }
-
 var Helpers = {
   // Root Element
   ROOT_EL: typeof window !== 'undefined' ? document.documentElement : null,
@@ -96,7 +88,6 @@ var Helpers = {
     var layoutMenu = this.getLayoutMenu();
     if (!layoutMenu) return;
     var activeEl = layoutMenu.querySelector('li.menu-item.active:not(.open)');
-
     if (activeEl) {
       // t = current time
       // b = start value
@@ -108,37 +99,31 @@ var Helpers = {
         t -= 1;
         return -c / 2 * (t * (t - 2) - 1) + b;
       };
-
       var element = this.getLayoutMenu().querySelector('.menu-inner');
-
       if (typeof activeEl === 'string') {
         activeEl = document.querySelector(activeEl);
       }
-
       if (typeof activeEl !== 'number') {
         activeEl = activeEl.getBoundingClientRect().top + element.scrollTop;
-      } // If active element's top position is less than 2/3 (66%) of menu height than do not scroll
+      }
 
-
+      // If active element's top position is less than 2/3 (66%) of menu height than do not scroll
       if (activeEl < parseInt(element.clientHeight * 2 / 3, 10)) return;
       var start = element.scrollTop;
       var change = activeEl - start - parseInt(element.clientHeight / 2, 10);
       var startDate = +new Date();
-
       if (animate === true) {
         var animateScroll = function animateScroll() {
           var currentDate = +new Date();
           var currentTime = currentDate - startDate;
           var val = easeInOutQuad(currentTime, start, change, duration);
           element.scrollTop = val;
-
           if (currentTime < duration) {
             requestAnimationFrame(animateScroll);
           } else {
             element.scrollTop = change;
           }
         };
-
         animateScroll();
       } else {
         element.scrollTop = change;
@@ -149,12 +134,10 @@ var Helpers = {
   // Swipe In Gesture
   _swipeIn: function _swipeIn(targetEl, callback) {
     var _window = window,
-        Hammer = _window.Hammer;
-
+      Hammer = _window.Hammer;
     if (typeof Hammer !== 'undefined' && typeof targetEl === 'string') {
       // Swipe menu gesture
       var swipeInElement = document.querySelector(targetEl);
-
       if (swipeInElement) {
         var hammerInstance = new Hammer(swipeInElement);
         hammerInstance.on('panright', callback);
@@ -165,13 +148,11 @@ var Helpers = {
   // Swipe Out Gesture
   _swipeOut: function _swipeOut(targetEl, callback) {
     var _window2 = window,
-        Hammer = _window2.Hammer;
-
+      Hammer = _window2.Hammer;
     if (typeof Hammer !== 'undefined' && typeof targetEl === 'string') {
       setTimeout(function () {
         // Swipe menu gesture
         var swipeOutElement = document.querySelector(targetEl);
-
         if (swipeOutElement) {
           var hammerInstance = new Hammer(swipeOutElement);
           hammerInstance.get('pan').set({
@@ -187,12 +168,10 @@ var Helpers = {
   // Swipe Out On Overlay Tap
   _overlayTap: function _overlayTap(targetEl, callback) {
     var _window3 = window,
-        Hammer = _window3.Hammer;
-
+      Hammer = _window3.Hammer;
     if (typeof Hammer !== 'undefined' && typeof targetEl === 'string') {
       // Swipe out overlay element
       var swipeOutOverlayElement = document.querySelector(targetEl);
-
       if (swipeOutOverlayElement) {
         var hammerInstance = new Hammer(swipeOutOverlayElement);
         hammerInstance.on('tap', callback);
@@ -203,7 +182,6 @@ var Helpers = {
   // Add classes
   _addClass: function _addClass(cls) {
     var el = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.ROOT_EL;
-
     if (el.length !== undefined) {
       // Add classes to multiple elements
       el.forEach(function (e) {
@@ -222,7 +200,6 @@ var Helpers = {
   // Remove classes
   _removeClass: function _removeClass(cls) {
     var el = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.ROOT_EL;
-
     if (el.length !== undefined) {
       // Remove classes to multiple elements
       el.forEach(function (e) {
@@ -242,7 +219,6 @@ var Helpers = {
     var el = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.ROOT_EL;
     var cls1 = arguments.length > 1 ? arguments[1] : undefined;
     var cls2 = arguments.length > 2 ? arguments[2] : undefined;
-
     if (el.classList.contains(cls1)) {
       el.classList.replace(cls1, cls2);
     } else {
@@ -262,11 +238,9 @@ var Helpers = {
   _findParent: function _findParent(el, cls) {
     if (el && el.tagName.toUpperCase() === 'BODY' || el.tagName.toUpperCase() === 'HTML') return null;
     el = el.parentNode;
-
     while (el && el.tagName.toUpperCase() !== 'BODY' && !el.classList.contains(cls)) {
       el = el.parentNode;
     }
-
     el = el && el.tagName.toUpperCase() !== 'BODY' ? el : null;
     return el;
   },
@@ -274,17 +248,14 @@ var Helpers = {
   // Trigger window event
   _triggerWindowEvent: function _triggerWindowEvent(name) {
     if (typeof window === 'undefined') return;
-
     if (document.createEvent) {
       var event;
-
       if (typeof Event === 'function') {
         event = new Event(name);
       } else {
         event = document.createEvent('Event');
         event.initEvent(name, false, true);
       }
-
       window.dispatchEvent(event);
     } else {
       window.fireEvent("on".concat(name), document.createEventObject());
@@ -294,7 +265,6 @@ var Helpers = {
   // Trigger event
   _triggerEvent: function _triggerEvent(name) {
     this._triggerWindowEvent("layout".concat(name));
-
     this._listeners.filter(function (listener) {
       return listener.event === name;
     }).forEach(function (listener) {
@@ -306,15 +276,12 @@ var Helpers = {
   _updateInlineStyle: function _updateInlineStyle() {
     var navbarHeight = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     var footerHeight = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
     if (!this._styleEl) {
       this._styleEl = document.createElement('style');
       this._styleEl.type = 'text/css';
       document.head.appendChild(this._styleEl);
     }
-
     var newStyle = INLINE_STYLES.replace(/\{navbarHeight\}/gi, navbarHeight).replace(/\{footerHeight\}/gi, footerHeight);
-
     if (this._curStyle !== newStyle) {
       this._curStyle = newStyle;
       this._styleEl.textContent = newStyle;
@@ -331,19 +298,17 @@ var Helpers = {
   // Redraw layout menu (Safari bugfix)
   _redrawLayoutMenu: function _redrawLayoutMenu() {
     var layoutMenu = this.getLayoutMenu();
-
     if (layoutMenu && layoutMenu.querySelector('.menu')) {
       var inner = layoutMenu.querySelector('.menu-inner');
       var scrollTop = inner.scrollTop;
       var pageScrollTop = document.documentElement.scrollTop;
-      layoutMenu.style.display = 'none'; // layoutMenu.offsetHeight
-
+      layoutMenu.style.display = 'none';
+      // layoutMenu.offsetHeight
       layoutMenu.style.display = '';
       inner.scrollTop = scrollTop;
       document.documentElement.scrollTop = pageScrollTop;
       return true;
     }
-
     return false;
   },
   // ---
@@ -362,10 +327,11 @@ var Helpers = {
   // Calculate current navbar height
   _getNavbarHeight: function _getNavbarHeight() {
     var _this2 = this;
-
     var layoutNavbar = this.getLayoutNavbar();
     if (!layoutNavbar) return 0;
-    if (!this.isSmallScreen()) return layoutNavbar.getBoundingClientRect().height; // Needs some logic to get navbar height on small screens
+    if (!this.isSmallScreen()) return layoutNavbar.getBoundingClientRect().height;
+
+    // Needs some logic to get navbar height on small screens
 
     var clonedEl = layoutNavbar.cloneNode(true);
     clonedEl.id = null;
@@ -401,7 +367,6 @@ var Helpers = {
   // Toggle collapsed
   _setCollapsed: function _setCollapsed(collapsed) {
     var _this3 = this;
-
     if (this.isSmallScreen()) {
       if (collapsed) {
         this._removeClass('layout-menu-expanded');
@@ -418,24 +383,18 @@ var Helpers = {
   // Add layout sivenav toggle animationEnd event
   _bindLayoutAnimationEndEvent: function _bindLayoutAnimationEndEvent(modifier, cb) {
     var _this4 = this;
-
     var menu = this.getMenu();
     var duration = menu ? this._getAnimationDuration(menu) + 50 : 0;
-
     if (!duration) {
       modifier.call(this);
       cb.call(this);
       return;
     }
-
     this._transitionCallback = function (e) {
       if (e.target !== menu) return;
-
       _this4._unbindLayoutAnimationEndEvent();
-
       cb.call(_this4);
     };
-
     TRANS_EVENTS.forEach(function (e) {
       menu.addEventListener(e, _this4._transitionCallback, false);
     });
@@ -450,20 +409,16 @@ var Helpers = {
   // Remove layout sivenav toggle animationEnd event
   _unbindLayoutAnimationEndEvent: function _unbindLayoutAnimationEndEvent() {
     var _this5 = this;
-
     var menu = this.getMenu();
-
     if (this._transitionCallbackTimeout) {
       clearTimeout(this._transitionCallbackTimeout);
       this._transitionCallbackTimeout = null;
     }
-
     if (menu && this._transitionCallback) {
       TRANS_EVENTS.forEach(function (e) {
         menu.removeEventListener(e, _this5._transitionCallback, false);
       });
     }
-
     if (this._transitionCallback) {
       this._transitionCallback = null;
     }
@@ -472,23 +427,18 @@ var Helpers = {
   // Bind delayed window resize event
   _bindWindowResizeEvent: function _bindWindowResizeEvent() {
     var _this6 = this;
-
     this._unbindWindowResizeEvent();
-
     var cb = function cb() {
       if (_this6._resizeTimeout) {
         clearTimeout(_this6._resizeTimeout);
         _this6._resizeTimeout = null;
       }
-
       _this6._triggerEvent('resize');
     };
-
     this._resizeCallback = function () {
       if (_this6._resizeTimeout) clearTimeout(_this6._resizeTimeout);
       _this6._resizeTimeout = setTimeout(cb, _this6.RESIZE_DELAY);
     };
-
     window.addEventListener('resize', this._resizeCallback, false);
   },
   // ---
@@ -498,7 +448,6 @@ var Helpers = {
       clearTimeout(this._resizeTimeout);
       this._resizeTimeout = null;
     }
-
     if (this._resizeCallback) {
       window.removeEventListener('resize', this._resizeCallback, false);
       this._resizeCallback = null;
@@ -506,78 +455,62 @@ var Helpers = {
   },
   _bindMenuMouseEvents: function _bindMenuMouseEvents() {
     var _this7 = this;
-
     if (this._menuMouseEnter && this._menuMouseLeave && this._windowTouchStart) return;
     var layoutMenu = this.getLayoutMenu();
     if (!layoutMenu) return this._unbindMenuMouseEvents();
-
     if (!this._menuMouseEnter) {
       this._menuMouseEnter = function () {
         if (_this7.isSmallScreen() || !_this7._hasClass('layout-menu-collapsed') || _this7.isOffcanvas() || _this7._hasClass('layout-transitioning')) {
           return _this7._setMenuHoverState(false);
         }
-
         return _this7._setMenuHoverState(true);
       };
-
       layoutMenu.addEventListener('mouseenter', this._menuMouseEnter, false);
       layoutMenu.addEventListener('touchstart', this._menuMouseEnter, false);
     }
-
     if (!this._menuMouseLeave) {
       this._menuMouseLeave = function () {
         _this7._setMenuHoverState(false);
       };
-
       layoutMenu.addEventListener('mouseleave', this._menuMouseLeave, false);
     }
-
     if (!this._windowTouchStart) {
       this._windowTouchStart = function (e) {
         if (!e || !e.target || !_this7._findParent(e.target, '.layout-menu')) {
           _this7._setMenuHoverState(false);
         }
       };
-
       window.addEventListener('touchstart', this._windowTouchStart, true);
     }
   },
   _unbindMenuMouseEvents: function _unbindMenuMouseEvents() {
     if (!this._menuMouseEnter && !this._menuMouseLeave && !this._windowTouchStart) return;
     var layoutMenu = this.getLayoutMenu();
-
     if (this._menuMouseEnter) {
       if (layoutMenu) {
         layoutMenu.removeEventListener('mouseenter', this._menuMouseEnter, false);
         layoutMenu.removeEventListener('touchstart', this._menuMouseEnter, false);
       }
-
       this._menuMouseEnter = null;
     }
-
     if (this._menuMouseLeave) {
       if (layoutMenu) {
         layoutMenu.removeEventListener('mouseleave', this._menuMouseLeave, false);
       }
-
       this._menuMouseLeave = null;
     }
-
     if (this._windowTouchStart) {
       if (layoutMenu) {
         window.addEventListener('touchstart', this._windowTouchStart, true);
       }
-
       this._windowTouchStart = null;
     }
-
     this._setMenuHoverState(false);
   },
   // *******************************************************************************
   // * Methods
   scrollToActive: function scrollToActive() {
     var animate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
     this._scrollToActive(animate);
   },
   swipeIn: function swipeIn(el, callback) {
@@ -591,7 +524,6 @@ var Helpers = {
   },
   scrollPageTo: function scrollPageTo(to) {
     var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-
     // t = current time
     // b = start value
     // c = change in value
@@ -602,79 +534,62 @@ var Helpers = {
       t -= 1;
       return -c / 2 * (t * (t - 2) - 1) + b;
     };
-
     var element = document.scrollingElement;
-
     if (typeof to === 'string') {
       to = document.querySelector(to);
     }
-
     if (typeof to !== 'number') {
       to = to.getBoundingClientRect().top + element.scrollTop;
     }
-
     var start = element.scrollTop;
     var change = to - start;
-    var startDate = +new Date(); // const increment = 20
+    var startDate = +new Date();
+    // const increment = 20
 
     var animateScroll = function animateScroll() {
       var currentDate = +new Date();
       var currentTime = currentDate - startDate;
       var val = easeInOutQuad(currentTime, start, change, duration);
       element.scrollTop = val;
-
       if (currentTime < duration) {
         requestAnimationFrame(animateScroll);
       } else {
         element.scrollTop = to;
       }
     };
-
     animateScroll();
   },
   // ---
   // Collapse / expand layout
   setCollapsed: function setCollapsed() {
     var _this8 = this;
-
     var collapsed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : requiredParam('collapsed');
     var animate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
     var layoutMenu = this.getLayoutMenu();
     if (!layoutMenu) return;
-
     this._unbindLayoutAnimationEndEvent();
-
     if (animate && this._supportsTransitionEnd()) {
       this._addClass('layout-transitioning');
-
       if (collapsed) this._setMenuHoverState(false);
-
       this._bindLayoutAnimationEndEvent(function () {
         // Collapse / Expand
         _this8._setCollapsed(collapsed);
       }, function () {
         _this8._removeClass('layout-transitioning');
-
         _this8._triggerWindowEvent('resize');
-
         _this8._triggerEvent('toggle');
-
         _this8._setMenuHoverState(false);
       });
     } else {
       this._addClass('layout-no-transition');
+      if (collapsed) this._setMenuHoverState(false);
 
-      if (collapsed) this._setMenuHoverState(false); // Collapse / Expand
-
+      // Collapse / Expand
       this._setCollapsed(collapsed);
-
       setTimeout(function () {
         _this8._removeClass('layout-no-transition');
-
         _this8._triggerWindowEvent('resize');
-
         _this8._triggerEvent('toggle');
-
         _this8._setMenuHoverState(false);
       }, 1);
     }
@@ -690,21 +605,16 @@ var Helpers = {
   setPosition: function setPosition() {
     var fixed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : requiredParam('fixed');
     var offcanvas = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : requiredParam('offcanvas');
-
     this._removeClass('layout-menu-offcanvas layout-menu-fixed layout-menu-fixed-offcanvas');
-
     if (!fixed && offcanvas) {
       this._addClass('layout-menu-offcanvas');
     } else if (fixed && !offcanvas) {
       this._addClass('layout-menu-fixed');
-
       this._redrawLayoutMenu();
     } else if (fixed && offcanvas) {
       this._addClass('layout-menu-fixed-offcanvas');
-
       this._redrawLayoutMenu();
     }
-
     this.update();
   },
   // *******************************************************************************
@@ -748,14 +658,11 @@ var Helpers = {
     if (this.getLayoutNavbar() && (!this.isSmallScreen() && this.isLayoutNavbarFull() && this.isFixed() || this.isNavbarFixed()) || this.getLayoutFooter() && this.isFooterFixed()) {
       this._updateInlineStyle(this._getNavbarHeight(), this._getFooterHeight());
     }
-
     this._bindMenuMouseEvents();
   },
   setAutoUpdate: function setAutoUpdate() {
     var _this9 = this;
-
     var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : requiredParam('enable');
-
     if (enable && !this._autoUpdate) {
       this.on('resize.Helpers:autoUpdate', function () {
         return _this9.update();
@@ -776,7 +683,6 @@ var Helpers = {
           customRadioOptionEL.closest('.custom-option').classList.remove('checked');
         });
       }
-
       el.closest('.custom-option').classList.add('checked');
     } else {
       el.closest('.custom-option').classList.remove('checked');
@@ -800,7 +706,6 @@ var Helpers = {
     if (this.isSmallScreen()) {
       return !this._hasClass('layout-menu-expanded');
     }
-
     return this._hasClass('layout-menu-collapsed');
   },
   isFixed: function isFixed() {
@@ -829,18 +734,14 @@ var Helpers = {
   on: function on() {
     var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : requiredParam('event');
     var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : requiredParam('callback');
-
     var _event$split = event.split('.'),
-        _event$split2 = _slicedToArray(_event$split, 1),
-        _event = _event$split2[0];
-
+      _event$split2 = _slicedToArray(_event$split, 1),
+      _event = _event$split2[0];
     var _event$split3 = event.split('.'),
-        _event$split4 = _toArray(_event$split3),
-        namespace = _event$split4.slice(1); // let [_event, ...namespace] = event.split('.')
-
-
+      _event$split4 = _toArray(_event$split3),
+      namespace = _event$split4.slice(1);
+    // let [_event, ...namespace] = event.split('.')
     namespace = namespace.join('.') || null;
-
     this._listeners.push({
       event: _event,
       namespace: namespace,
@@ -849,19 +750,14 @@ var Helpers = {
   },
   off: function off() {
     var _this10 = this;
-
     var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : requiredParam('event');
-
     var _event$split5 = event.split('.'),
-        _event$split6 = _slicedToArray(_event$split5, 1),
-        _event = _event$split6[0];
-
+      _event$split6 = _slicedToArray(_event$split5, 1),
+      _event = _event$split6[0];
     var _event$split7 = event.split('.'),
-        _event$split8 = _toArray(_event$split7),
-        namespace = _event$split8.slice(1);
-
+      _event$split8 = _toArray(_event$split7),
+      namespace = _event$split8.slice(1);
     namespace = namespace.join('.') || null;
-
     this._listeners.filter(function (listener) {
       return listener.event === _event && listener.namespace === namespace;
     }).forEach(function (listener) {
@@ -872,61 +768,52 @@ var Helpers = {
   // * Life cycle
   init: function init() {
     var _this11 = this;
-
     if (this._initialized) return;
-    this._initialized = true; // Initialize `style` element
+    this._initialized = true;
 
-    this._updateInlineStyle(0); // Bind window resize event
+    // Initialize `style` element
+    this._updateInlineStyle(0);
 
+    // Bind window resize event
+    this._bindWindowResizeEvent();
 
-    this._bindWindowResizeEvent(); // Bind init event
-
-
+    // Bind init event
     this.off('init._Helpers');
     this.on('init._Helpers', function () {
       _this11.off('resize._Helpers:redrawMenu');
-
       _this11.on('resize._Helpers:redrawMenu', function () {
         // eslint-disable-next-line no-unused-expressions
         _this11.isSmallScreen() && !_this11.isCollapsed() && _this11._redrawLayoutMenu();
-      }); // Force repaint in IE 10
+      });
 
-
+      // Force repaint in IE 10
       if (typeof document.documentMode === 'number' && document.documentMode < 11) {
         _this11.off('resize._Helpers:ie10RepaintBody');
-
         _this11.on('resize._Helpers:ie10RepaintBody', function () {
           if (_this11.isFixed()) return;
           var scrollTop = document.documentElement.scrollTop;
-          document.body.style.display = 'none'; // document.body.offsetHeight
-
+          document.body.style.display = 'none';
+          // document.body.offsetHeight
           document.body.style.display = 'block';
           document.documentElement.scrollTop = scrollTop;
         });
       }
     });
-
     this._triggerEvent('init');
   },
   destroy: function destroy() {
     var _this12 = this;
-
     if (!this._initialized) return;
     this._initialized = false;
-
     this._removeClass('layout-transitioning');
-
     this._removeInlineStyle();
-
     this._unbindLayoutAnimationEndEvent();
-
     this._unbindWindowResizeEvent();
-
     this._unbindMenuMouseEvents();
-
     this.setAutoUpdate(false);
-    this.off('init._Helpers'); // Remove all listeners except `init`
+    this.off('init._Helpers');
 
+    // Remove all listeners except `init`
     this._listeners.filter(function (listener) {
       return listener.event !== 'init';
     }).forEach(function (listener) {
@@ -937,7 +824,6 @@ var Helpers = {
   // Init Password Toggle
   initPasswordToggle: function initPasswordToggle() {
     var toggler = document.querySelectorAll('.form-password-toggle i');
-
     if (typeof toggler !== 'undefined' && toggler !== null) {
       toggler.forEach(function (el) {
         el.addEventListener('click', function (e) {
@@ -945,7 +831,6 @@ var Helpers = {
           var formPasswordToggle = el.closest('.form-password-toggle');
           var formPasswordToggleIcon = formPasswordToggle.querySelector('i');
           var formPasswordToggleInput = formPasswordToggle.querySelector('input');
-
           if (formPasswordToggleInput.getAttribute('type') === 'text') {
             formPasswordToggleInput.setAttribute('type', 'password');
             formPasswordToggleIcon.classList.replace('bx-show', 'bx-hide');
@@ -961,13 +846,12 @@ var Helpers = {
   // Init custom option check
   initCustomOptionCheck: function initCustomOptionCheck() {
     var _this = this;
-
     var custopOptionList = [].slice.call(document.querySelectorAll('.custom-option .form-check-input'));
     custopOptionList.map(function (customOptionEL) {
       // Update custom options check on page load
-      _this.updateCustomOptionCheck(customOptionEL); // Update custom options check on click
+      _this.updateCustomOptionCheck(customOptionEL);
 
-
+      // Update custom options check on click
       customOptionEL.addEventListener('click', function (e) {
         _this.updateCustomOptionCheck(customOptionEL);
       });
@@ -978,7 +862,6 @@ var Helpers = {
   initSpeechToText: function initSpeechToText() {
     var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     var speechToText = document.querySelectorAll('.speech-to-text');
-
     if (SpeechRecognition !== undefined && SpeechRecognition !== null) {
       if (typeof speechToText !== 'undefined' && speechToText !== null) {
         var recognition = new SpeechRecognition();
@@ -987,23 +870,18 @@ var Helpers = {
           var listening = false;
           el.addEventListener('click', function () {
             el.closest('.input-group').querySelector('.form-control').focus();
-
             recognition.onspeechstart = function () {
               listening = true;
             };
-
             if (listening === false) {
               recognition.start();
             }
-
             recognition.onerror = function () {
               listening = false;
             };
-
             recognition.onresult = function (event) {
               el.closest('.input-group').querySelector('.form-control').value = event.results[0][0].transcript;
             };
-
             recognition.onspeechend = function () {
               listening = false;
               recognition.stop();
@@ -1018,8 +896,7 @@ var Helpers = {
   initNavbarDropdownScrollbar: function initNavbarDropdownScrollbar() {
     var scrollbarContainer = document.querySelectorAll('.navbar-dropdown .scrollable-container');
     var _window4 = window,
-        PerfectScrollbar = _window4.PerfectScrollbar;
-
+      PerfectScrollbar = _window4.PerfectScrollbar;
     if (PerfectScrollbar !== undefined) {
       if (typeof scrollbarContainer !== 'undefined' && scrollbarContainer !== null) {
         scrollbarContainer.forEach(function (el) {
@@ -1037,15 +914,12 @@ var Helpers = {
     return new Promise(function (resolve, reject) {
       var req = new XMLHttpRequest();
       req.open('GET', url);
-
       req.onload = function () {
         return req.status === 200 ? resolve(req.response) : reject(Error(req.statusText));
       };
-
       req.onerror = function (e) {
         return reject(Error("Network Error: ".concat(e)));
       };
-
       req.send();
     });
   },
@@ -1061,14 +935,12 @@ var Helpers = {
         var targetEl = document.querySelectorAll(target);
         targetEl.forEach(function (tel) {
           tel.classList.toggle('show');
-
           if (typeof overlay !== 'undefined' && overlay !== null && overlay !== false && typeof appOverlay !== 'undefined') {
             if (tel.classList.contains('show')) {
               appOverlay[0].classList.add('show');
             } else {
               appOverlay[0].classList.remove('show');
             }
-
             appOverlay[0].addEventListener('click', function (e) {
               e.currentTarget.classList.remove('show');
               tel.classList.remove('show');
@@ -1078,24 +950,25 @@ var Helpers = {
       });
     });
   }
-}; // *******************************************************************************
+};
+
+// *******************************************************************************
 // * Initialization
 
 if (typeof window !== 'undefined') {
   Helpers.init();
-
   if (Helpers.isMobileDevice() && window.chrome) {
     document.documentElement.classList.add('layout-menu-100vh');
-  } // Update layout after page load
+  }
 
-
+  // Update layout after page load
   if (document.readyState === 'complete') Helpers.update();else document.addEventListener('DOMContentLoaded', function onContentLoaded() {
     Helpers.update();
     document.removeEventListener('DOMContentLoaded', onContentLoaded);
   });
-} // ---
+}
 
-
+// ---
 
 var __webpack_export_target__ = window;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];

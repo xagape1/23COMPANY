@@ -1677,13 +1677,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_daterangepicker_daterangepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-daterangepicker/daterangepicker */ "./node_modules/bootstrap-daterangepicker/daterangepicker.js");
 /* harmony import */ var bootstrap_daterangepicker_daterangepicker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_daterangepicker_daterangepicker__WEBPACK_IMPORTED_MODULE_0__);
- // Patch detect when weeks are shown
+
+
+// Patch detect when weeks are shown
 
 var fnDaterangepicker = $.fn.daterangepicker;
-
 $.fn.daterangepicker = function (options, callback) {
   fnDaterangepicker.call(this, options, callback);
-
   if (options && (options.showWeekNumbers || options.showISOWeekNumbers)) {
     this.each(function () {
       var instance = $(this).data('daterangepicker');
@@ -1691,7 +1691,6 @@ $.fn.daterangepicker = function (options, callback) {
       if (instance && instance.container) instance.container.addClass('with-week-numbers');
     });
   }
-
   return this;
 };
 }();

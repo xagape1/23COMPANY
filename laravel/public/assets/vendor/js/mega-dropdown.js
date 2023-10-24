@@ -42,19 +42,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   MegaDropdown: function() { return /* binding */ MegaDropdown; }
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
 var TIMEOUT = 150;
-
 var MegaDropdown = /*#__PURE__*/function () {
   function MegaDropdown(element) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
     _classCallCheck(this, MegaDropdown);
-
     this._onHover = options.trigger === 'hover' || element.getAttribute('data-trigger') === 'hover';
     this._container = MegaDropdown._findParent(element, 'mega-dropdown');
     if (!this._container) return;
@@ -62,10 +56,8 @@ var MegaDropdown = /*#__PURE__*/function () {
     if (!this._menu) return;
     element.setAttribute('aria-expanded', 'false');
     this._el = element;
-
     this._bindEvents();
   }
-
   _createClass(MegaDropdown, [{
     key: "open",
     value: function open() {
@@ -73,23 +65,16 @@ var MegaDropdown = /*#__PURE__*/function () {
         clearTimeout(this._timeout);
         this._timeout = null;
       }
-
       if (this._focusTimeout) {
         clearTimeout(this._focusTimeout);
         this._focusTimeout = null;
       }
-
       if (this._el.getAttribute('aria-expanded') !== 'true') {
         this._triggerEvent('show');
-
         this._container.classList.add('show');
-
         this._menu.classList.add('show');
-
         this._el.setAttribute('aria-expanded', 'true');
-
         this._el.focus();
-
         this._triggerEvent('shown');
       }
     }
@@ -97,24 +82,20 @@ var MegaDropdown = /*#__PURE__*/function () {
     key: "close",
     value: function close(force) {
       var _this = this;
-
       if (this._timeout) {
         clearTimeout(this._timeout);
         this._timeout = null;
       }
-
       if (this._focusTimeout) {
         clearTimeout(this._focusTimeout);
         this._focusTimeout = null;
       }
-
       if (this._onHover && !force) {
         this._timeout = setTimeout(function () {
           if (_this._timeout) {
             clearTimeout(_this._timeout);
             _this._timeout = null;
           }
-
           _this._close();
         }, TIMEOUT);
       } else {
@@ -131,14 +112,11 @@ var MegaDropdown = /*#__PURE__*/function () {
     key: "destroy",
     value: function destroy() {
       this._unbindEvents();
-
       this._el = null;
-
       if (this._timeout) {
         clearTimeout(this._timeout);
         this._timeout = null;
       }
-
       if (this._focusTimeout) {
         clearTimeout(this._focusTimeout);
         this._focusTimeout = null;
@@ -149,13 +127,9 @@ var MegaDropdown = /*#__PURE__*/function () {
     value: function _close() {
       if (this._el.getAttribute('aria-expanded') === 'true') {
         this._triggerEvent('hide');
-
         this._container.classList.remove('show');
-
         this._menu.classList.remove('show');
-
         this._el.setAttribute('aria-expanded', 'false');
-
         this._triggerEvent('hidden');
       }
     }
@@ -163,37 +137,28 @@ var MegaDropdown = /*#__PURE__*/function () {
     key: "_bindEvents",
     value: function _bindEvents() {
       var _this2 = this;
-
       this._elClickEvnt = function (e) {
         e.preventDefault();
-
         _this2.toggle();
       };
-
       this._el.addEventListener('click', this._elClickEvnt);
-
       this._bodyClickEvnt = function (e) {
         if (!_this2._container.contains(e.target) && _this2._container.classList.contains('show')) {
           _this2.close(true);
         }
       };
-
       document.body.addEventListener('click', this._bodyClickEvnt, true);
-
       this._menuClickEvnt = function (e) {
         if (e.target.classList.contains('mega-dropdown-link')) {
           _this2.close(true);
         }
       };
-
       this._menu.addEventListener('click', this._menuClickEvnt, true);
-
       this._focusoutEvnt = function () {
         if (_this2._focusTimeout) {
           clearTimeout(_this2._focusTimeout);
           _this2._focusTimeout = null;
         }
-
         if (_this2._el.getAttribute('aria-expanded') !== 'true') return;
         _this2._focusTimeout = setTimeout(function () {
           if (document.activeElement.tagName.toUpperCase() !== 'BODY' && MegaDropdown._findParent(document.activeElement, 'mega-dropdown') !== _this2._container) {
@@ -201,28 +166,19 @@ var MegaDropdown = /*#__PURE__*/function () {
           }
         }, 100);
       };
-
       this._container.addEventListener('focusout', this._focusoutEvnt, true);
-
       if (this._onHover) {
         this._enterEvnt = function () {
           if (window.getComputedStyle(_this2._menu, null).getPropertyValue('position') === 'static') return;
-
           _this2.open();
         };
-
         this._leaveEvnt = function () {
           if (window.getComputedStyle(_this2._menu, null).getPropertyValue('position') === 'static') return;
-
           _this2.close();
         };
-
         this._el.addEventListener('mouseenter', this._enterEvnt);
-
         this._menu.addEventListener('mouseenter', this._enterEvnt);
-
         this._el.addEventListener('mouseleave', this._leaveEvnt);
-
         this._menu.addEventListener('mouseleave', this._leaveEvnt);
       }
     }
@@ -231,40 +187,28 @@ var MegaDropdown = /*#__PURE__*/function () {
     value: function _unbindEvents() {
       if (this._elClickEvnt) {
         this._el.removeEventListener('click', this._elClickEvnt);
-
         this._elClickEvnt = null;
       }
-
       if (this._bodyClickEvnt) {
         document.body.removeEventListener('click', this._bodyClickEvnt, true);
         this._bodyClickEvnt = null;
       }
-
       if (this._menuClickEvnt) {
         this._menu.removeEventListener('click', this._menuClickEvnt, true);
-
         this._menuClickEvnt = null;
       }
-
       if (this._focusoutEvnt) {
         this._container.removeEventListener('focusout', this._focusoutEvnt, true);
-
         this._focusoutEvnt = null;
       }
-
       if (this._enterEvnt) {
         this._el.removeEventListener('mouseenter', this._enterEvnt);
-
         this._menu.removeEventListener('mouseenter', this._enterEvnt);
-
         this._enterEvnt = null;
       }
-
       if (this._leaveEvnt) {
         this._el.removeEventListener('mouseleave', this._leaveEvnt);
-
         this._menu.removeEventListener('mouseleave', this._leaveEvnt);
-
         this._leaveEvnt = null;
       }
     }
@@ -273,14 +217,12 @@ var MegaDropdown = /*#__PURE__*/function () {
     value: function _triggerEvent(event) {
       if (document.createEvent) {
         var customEvent;
-
         if (typeof Event === 'function') {
           customEvent = new Event(event);
         } else {
           customEvent = document.createEvent('Event');
           customEvent.initEvent(event, false, true);
         }
-
         this._container.dispatchEvent(customEvent);
       } else {
         this._container.fireEvent("on".concat(event), document.createEventObject());
@@ -291,18 +233,14 @@ var MegaDropdown = /*#__PURE__*/function () {
     value: function _findParent(el, cls) {
       if (el.tagName.toUpperCase() === 'BODY') return null;
       el = el.parentNode;
-
       while (el.tagName.toUpperCase() !== 'BODY' && !el.classList.contains(cls)) {
         el = el.parentNode;
       }
-
       return el.tagName.toUpperCase() !== 'BODY' ? el : null;
     }
   }]);
-
   return MegaDropdown;
 }();
-
 
 var __webpack_export_target__ = window;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
