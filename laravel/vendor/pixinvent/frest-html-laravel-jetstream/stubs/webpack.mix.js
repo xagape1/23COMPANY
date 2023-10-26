@@ -22,6 +22,9 @@ mix.options({
  */
 
 mix.webpackConfig({
+  resolve: {
+    extensions: [".wasm", ".mjs", ".js", ".jsx", ".json"]
+  },
   output: {
     publicPath: process.env.ASSET_URL || undefined,
     libraryTarget: 'umd'
