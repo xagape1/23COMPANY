@@ -60,8 +60,5 @@
             </div>
         </div>
     </div>
-    @env(['local','development'])
-        @vite('resources/js/delete-modal.js')
-    @endenv
 
 @endsection
