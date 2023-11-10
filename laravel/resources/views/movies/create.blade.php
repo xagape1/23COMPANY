@@ -9,15 +9,15 @@
         class="form-control"></textarea>
     </div>
     <div class="form-group">
-    <label for="description">{{ __('fields.description') }}</label>
+    <label for="description">Descripción</label>
     <textarea id="description" name="description" class="form-control"></textarea>
     </div>
     <div class="form-group">
-        <label for="gender">{{ __('fields.gender') }}</label>
+        <label for="gender">Género</label>
         <textarea id="gender" name="gender" class="form-control"></textarea>
     </div>
     <div class="form-group">
-    <label for="cover">{{ __('fields.cover_id') }}</label>
+    <label for="cover">Portada</label>
     <input type="file" id="cover" name="cover" class="form-control" />
     </div>
     <div class="form-group">
