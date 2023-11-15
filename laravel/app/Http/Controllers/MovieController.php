@@ -102,8 +102,7 @@ class MovieController extends Controller
     {
         return view('movies.show', [
             'movie' => $movie,
-            'cover' => $movie->file,
-            'intro' => $movie->file,
+            "files" => File::all(),
         ]);
     }
     
@@ -116,7 +115,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view("posts.edit", [
+        return view("movies.edit", [
             'movie'   => $movie,
             'cover' => $movie->cover,
             'intro' => $movie->intro,
