@@ -15,6 +15,13 @@
         <div class="col-md-8">
             <div class="card">
                 <table class="table">
+                    @foreach ($files as $file)
+                        @if($file->id == $movie->intro_id)
+                            <div>
+                                <img alt ="Pelicula"  src='{{ asset("storage/{$file->filepath}") }}'/>
+                            </div>
+                        @endif
+                    @endforeach
                     <tr>
                         <td>{{ $movie->title }}</td>
                     </tr>
@@ -26,13 +33,6 @@
                         <td><strong>{{ __('Gender') }}</strong></td>
                         <td>{{ $movie->gender }}</td>
                     </tr>
-                    @foreach ($files as $file)
-                        @if($file->id == $movie->intro_id)
-                            <div>
-                                <img alt ="Pelicula"  src='{{ asset("storage/{$file->filepath}") }}'/>
-                            </div>
-                        @endif
-                    @endforeach
                     </tbody>
                 </table>
 
