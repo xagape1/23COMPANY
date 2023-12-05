@@ -40,7 +40,7 @@ class FileController extends Controller
     {
         // Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png,mp4|max:104857600'
         ]);
 
         // Desar fitxer al disc i inserir dades a BD
@@ -96,7 +96,7 @@ class FileController extends Controller
     {
         // Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png,mp4|max:104857600'
         ]);
 
         // Desar fitxer al disc i actualitzar dades a BD

@@ -17,10 +17,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view("movies.index", [
-            "movies" => Movie::all(),
-            "files" => File::all()
-        ]);
+
     }
 
     /**
@@ -29,8 +26,8 @@ class MovieController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
-        return view("movies.create");  
+    {
+        return view("movies.create");
     }
 
     /**
@@ -49,20 +46,20 @@ class MovieController extends Controller
             'cover' => 'required|mimes:gif,jpeg,jpg,png,mp4',
             'intro' => 'required|mimes:gif,jpeg,jpg,png,mp4',
         ]);
-        
-        $title          = $request->get('title');
-        $description    = $request->get('description');
-        $gender         = $request->get('gender');
-        $cover          = $request->file('cover');
-        $intro          = $request->file('intro');
-    
+
+        $title = $request->get('title');
+        $description = $request->get('description');
+        $gender = $request->get('gender');
+        $cover = $request->file('cover');
+        $intro = $request->file('intro');
+
         $filec = new File();
         $filecOk = $filec->diskSave($cover);
 
         $filei = new File();
         $fileiOk = $filei->diskSave($intro);
-    
-        if ($filecOk && $fileiOk ) {
+
+        if ($filecOk && $fileiOk) {
             // Guardar los datos en la BD
             Log::debug("Saving post at DB...");
             $movie = Movie::create([
@@ -82,7 +79,7 @@ class MovieController extends Controller
                 ->with('error', __('ERROR Uploading file'));
         }
     }
-    
+
     private function saveFileAndGetId($file)
     {
         $fileModel = new File();
@@ -105,7 +102,7 @@ class MovieController extends Controller
             "files" => File::all(),
         ]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -116,7 +113,7 @@ class MovieController extends Controller
     public function edit(Movie $movie)
     {
         return view("movies.edit", [
-            'movie'   => $movie,
+            'movie' => $movie,
             'cover' => $movie->cover,
             'intro' => $movie->intro,
         ]);
@@ -133,26 +130,26 @@ class MovieController extends Controller
     {
         // Validar dades del formulari
         $validatedData = $request->validate([
-            'title'      => 'required',
-            'description'  => 'required',
+            'title' => 'required',
+            'description' => 'required',
             'gender' => 'required',
-            'cover'    => 'required|mimes:gif,jpeg,jpg,png,mp4',
-            'intro'    => 'required|mimes:gif,jpeg,jpg,png,mp4',
+            'cover' => 'required|mimes:gif,jpeg,jpg,png,mp4',
+            'intro' => 'required|mimes:gif,jpeg,jpg,png,mp4',
         ]);
 
         // Obtenir dades del formulari
-        $title      = $request->get('title');
-        $description      = $request->get('description');
-        $gender      = $request->get('gender');
-        $cover    = $request->file('cover');
-        $intro    = $request->file('intro');
+        $title = $request->get('title');
+        $description = $request->get('description');
+        $gender = $request->get('gender');
+        $cover = $request->file('cover');
+        $intro = $request->file('intro');
 
         // Desar fitxer (opcional)
-        if (is_null($cover && $intro) || $movie->file->diskSave($cover) && $movie->file->diskSave($intro) ) {
+        if (is_null($cover && $intro) || $movie->file->diskSave($cover) && $movie->file->diskSave($intro)) {
             Log::debug("Updating DB...");
-            $movie->title      = $title;
-            $movie->description  = $description;
-            $movie->gender  = $gender;
+            $movie->title = $title;
+            $movie->description = $description;
+            $movie->gender = $gender;
             $movie->save();
             Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
@@ -173,7 +170,9 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        // Eliminar post de BD
         $movie->delete();
+        // Eliminar fitxer associat del disc i BD
         $movie->file->diskDelete();
         // Patró PRG amb missatge d'èxit
         return redirect()->route("/")
@@ -188,5 +187,12 @@ class MovieController extends Controller
     public function update_post(Request $request, $id)
     {
         return $this->update($request, $id);
+    }
+
+    public function showHomePage()
+    {
+        $movies = Movie::all();
+        $files = File::all();
+        return view('pages-home', compact('movies', 'files'));
     }
 }
