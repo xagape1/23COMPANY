@@ -22,24 +22,24 @@ return /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 686:
-/***/ (function(__unused_webpack_module, __nested_webpack_exports__, __nested_webpack_require_623__) {
+/***/ (function(__unused_webpack_module, __nested_webpack_exports__, __nested_webpack_require_643__) {
 
 "use strict";
 
 // EXPORTS
-__nested_webpack_require_623__.d(__nested_webpack_exports__, {
+__nested_webpack_require_643__.d(__nested_webpack_exports__, {
   "default": function() { return /* binding */ clipboard; }
 });
 
 // EXTERNAL MODULE: ./node_modules/tiny-emitter/index.js
-var tiny_emitter = __nested_webpack_require_623__(279);
-var tiny_emitter_default = /*#__PURE__*/__nested_webpack_require_623__.n(tiny_emitter);
+var tiny_emitter = __nested_webpack_require_643__(279);
+var tiny_emitter_default = /*#__PURE__*/__nested_webpack_require_643__.n(tiny_emitter);
 // EXTERNAL MODULE: ./node_modules/good-listener/src/listen.js
-var listen = __nested_webpack_require_623__(370);
-var listen_default = /*#__PURE__*/__nested_webpack_require_623__.n(listen);
+var listen = __nested_webpack_require_643__(370);
+var listen_default = /*#__PURE__*/__nested_webpack_require_643__.n(listen);
 // EXTERNAL MODULE: ./node_modules/select/src/select.js
-var src_select = __nested_webpack_require_623__(817);
-var select_default = /*#__PURE__*/__nested_webpack_require_623__.n(src_select);
+var src_select = __nested_webpack_require_643__(817);
+var select_default = /*#__PURE__*/__nested_webpack_require_643__.n(src_select);
 ;// CONCATENATED MODULE: ./src/common/command.js
 /**
  * Executes a given operation type.
@@ -463,9 +463,9 @@ module.exports = closest;
 /***/ }),
 
 /***/ 438:
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_15749__) {
+/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_16210__) {
 
-var closest = __nested_webpack_require_15749__(828);
+var closest = __nested_webpack_require_16210__(828);
 
 /**
  * Delegates event to a selector.
@@ -604,10 +604,10 @@ exports.fn = function(value) {
 /***/ }),
 
 /***/ 370:
-/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_19113__) {
+/***/ (function(module, __unused_webpack_exports, __nested_webpack_require_19715__) {
 
-var is = __nested_webpack_require_19113__(879);
-var delegate = __nested_webpack_require_19113__(438);
+var is = __nested_webpack_require_19715__(879);
+var delegate = __nested_webpack_require_19715__(438);
 
 /**
  * Validates all params and calls the right
@@ -835,7 +835,7 @@ module.exports.TinyEmitter = E;
 /******/ 	var __webpack_module_cache__ = {};
 /******/ 	
 /******/ 	// The require function
-/******/ 	function __nested_webpack_require_24495__(moduleId) {
+/******/ 	function __nested_webpack_require_25328__(moduleId) {
 /******/ 		// Check if module is in cache
 /******/ 		if(__webpack_module_cache__[moduleId]) {
 /******/ 			return __webpack_module_cache__[moduleId].exports;
@@ -848,7 +848,7 @@ module.exports.TinyEmitter = E;
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_24495__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __nested_webpack_require_25328__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -858,11 +858,11 @@ module.exports.TinyEmitter = E;
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	!function() {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nested_webpack_require_24495__.n = function(module) {
+/******/ 		__nested_webpack_require_25328__.n = function(module) {
 /******/ 			var getter = module && module.__esModule ?
 /******/ 				function() { return module['default']; } :
 /******/ 				function() { return module; };
-/******/ 			__nested_webpack_require_24495__.d(getter, { a: getter });
+/******/ 			__nested_webpack_require_25328__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
 /******/ 	}();
@@ -870,9 +870,9 @@ module.exports.TinyEmitter = E;
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
-/******/ 		__nested_webpack_require_24495__.d = function(exports, definition) {
+/******/ 		__nested_webpack_require_25328__.d = function(exports, definition) {
 /******/ 			for(var key in definition) {
-/******/ 				if(__nested_webpack_require_24495__.o(definition, key) && !__nested_webpack_require_24495__.o(exports, key)) {
+/******/ 				if(__nested_webpack_require_25328__.o(definition, key) && !__nested_webpack_require_25328__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
 /******/ 				}
 /******/ 			}
@@ -881,14 +881,14 @@ module.exports.TinyEmitter = E;
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	!function() {
-/******/ 		__nested_webpack_require_24495__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 		__nested_webpack_require_25328__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
 /******/ 	}();
 /******/ 	
 /************************************************************************/
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __nested_webpack_require_24495__(686);
+/******/ 	return __nested_webpack_require_25328__(686);
 /******/ })()
 .default;
 });
