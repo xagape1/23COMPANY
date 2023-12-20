@@ -1,4 +1,4 @@
-import * as alpine from 'alpinejs/dist/cdn';
+// import * as alpine from 'alpinejs/dist/cdn';
 
 
-export { alpine };
+// export { alpine };

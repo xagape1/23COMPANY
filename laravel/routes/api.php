@@ -22,9 +22,6 @@ use App\Http\Controllers\TokenController;
 Route::apiResource('files', FileController::class);
 Route::post('files/{file}', [FileController::class, 'update_post']);
 
-
-
-
 Route::post('/register', [TokenController::class, 'register']);
 Route::post('/login', [TokenController::class, 'login']);
 Route::post('/logout', [TokenController::class, 'logout'])->middleware(['auth:sanctum']);

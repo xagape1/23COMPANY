@@ -26,7 +26,6 @@ class MovieController extends Controller
         ], 200);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -136,81 +135,83 @@ class MovieController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Movie  $place
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Movie $movie)
+    {
+        return view("movies.edit", [
+            'movie' => $movie,
+            'file' => $movie->file,
+        ]);
+    }
+
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    use Illuminate\Support\Facades\Log;
+
+    public function update(Request $request, Movie $movie)
     {
-        // Encuentra la película por su ID
-        $movie = Movie::find($id);
-        if (!$movie) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Movie not found'
-            ], 404);
-        }
-
-        // Encuentra los archivos de portada e introducción relacionados con la película
-        $coverFile = File::find($movie->cover_id);
-        $introFile = File::find($movie->intro_id);
-        if (!$coverFile || !$introFile) {
-            return response()->json([
-                'success' => false,
-                'message' => 'File not found'
-            ], 404);
-        }
-
         // Valida los datos recibidos
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'gender' => 'required',
-            'cover' => 'required|mimes:gif,jpeg,jpg,png',
-            'intro' => 'required|mimes:gif,jpeg,jpg,png',
+            'cover' => 'nullable|mimes:gif,jpeg,jpg,png',
+            'intro' => 'nullable|mimes:gif,jpeg,jpg,png',
         ]);
 
-        // Obtén los archivos del formulario
-        $cover = $request->file('cover');
-        $intro = $request->file('intro');
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $gender = $request->input('gender');
+        $coverFile = $request->file('cover');
+        $introFile = $request->file('intro');
 
-        // Sube los archivos al disco
-        $coverFileName = time() . '_' . $cover->getClientOriginalName();
-        $coverFilePath = $cover->storeAs('uploads', $coverFileName, 'public');
+        // Actualiza los datos de la película
+        $movie->title = $title;
+        $movie->description = $description;
+        $movie->gender = $gender;
 
-        $introFileName = time() . '_' . $intro->getClientOriginalName();
-        $introFilePath = $intro->storeAs('uploads', $introFileName, 'public');
-
-        // Verifica la existencia de los archivos en el almacenamiento local
-        if (\Storage::disk('public')->exists($coverFilePath) && \Storage::disk('public')->exists($introFilePath)) {
-            // Actualiza los datos de los archivos en la base de datos
-            $coverFile->filepath = $coverFileName;
-            $coverFile->filesize = $cover->getSize();
-            $coverFile->save();
-
-            $introFile->filepath = $introFileName;
-            $introFile->filesize = $intro->getSize();
-            $introFile->save();
-
-            // Actualiza los datos de la película en la base de datos
-            $movie->title = $request->input('title');
-            $movie->description = $request->input('description');
-            $movie->gender = $request->input('gender');
-            $movie->save();
-
-            return response()->json([
-                'success' => true,
-                'data' => $movie
-            ], 200);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Error updating file'
-            ], 421);
+        // Maneja la actualización de la portada (cover) si se proporciona un nuevo archivo
+        if ($coverFile) {
+            // Agrega lógica para almacenar el nuevo archivo y actualizar la base de datos
+            if ($movie->cover->diskSave($coverFile)) {
+                // Éxito al almacenar el archivo
+            } else {
+                // Error al almacenar el archivo
+                return redirect()->route('movies.edit', $movie)
+                    ->with('error', __('Error uploading cover file'));
+            }
         }
+
+        // Maneja la actualización de la introducción (intro) si se proporciona un nuevo archivo
+        if ($introFile) {
+            // Agrega lógica para almacenar el nuevo archivo y actualizar la base de datos
+            if ($movie->intro->diskSave($introFile)) {
+                // Éxito al almacenar el archivo
+            } else {
+                // Error al almacenar el archivo
+                return redirect()->route('movies.edit', $movie)
+                    ->with('error', __('Error uploading intro file'));
+            }
+        }
+
+        // Guarda los cambios en la película
+        $movie->save();
+
+        // Redirige con un mensaje de éxito
+        return redirect()->route('movies.show', $movie)
+            ->with('success', __('Movie successfully updated'));
     }
+
 
 
     /**

@@ -114,8 +114,7 @@ class MovieController extends Controller
     {
         return view("movies.edit", [
             'movie' => $movie,
-            'cover' => $movie->cover,
-            'intro' => $movie->intro,
+            "files" => File::all(),
         ]);
     }
 
@@ -128,39 +127,56 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        // Validar dades del formulari
+        // Validar los archivos solo si se están actualizando
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'gender' => 'required',
-            'cover' => 'required|mimes:gif,jpeg,jpg,png,mp4',
-            'intro' => 'required|mimes:gif,jpeg,jpg,png,mp4',
+            'cover' => 'sometimes|required|mimes:gif,jpeg,jpg,png,mp4',
+            'intro' => 'sometimes|required|mimes:gif,jpeg,jpg,png,mp4',
         ]);
 
-        // Obtenir dades del formulari
         $title = $request->get('title');
         $description = $request->get('description');
         $gender = $request->get('gender');
         $cover = $request->file('cover');
         $intro = $request->file('intro');
 
-        // Desar fitxer (opcional)
-        if (is_null($cover && $intro) || $movie->file->diskSave($cover) && $movie->file->diskSave($intro)) {
-            Log::debug("Updating DB...");
-            $movie->title = $title;
-            $movie->description = $description;
-            $movie->gender = $gender;
-            $movie->save();
-            Log::debug("DB storage OK");
-            // Patró PRG amb missatge d'èxit
-            return redirect()->route('movies.show', $movie)
-                ->with('success', __('Post successfully saved'));
-        } else {
-            // Patró PRG amb missatge d'error
-            return redirect()->route("movies.edit")
-                ->with('error', __('ERROR Uploading file'));
+        // Actualizar los datos de la película en la BD
+        Log::debug("Updating post at DB...");
+        $movie->update([
+            'title' => $title,
+            'description' => $description,
+            'gender' => $gender,
+        ]);
+        Log::debug("DB update OK");
+
+        // Actualizar archivos solo si se proporcionan nuevos archivos
+        if ($cover) {
+            $filec = new File();
+            $filecOk = $filec->diskSave($cover);
+
+            if ($filecOk) {
+                // Actualizar el ID del archivo de portada
+                $movie->update(['cover_id' => $filec->id]);
+            }
         }
+
+        if ($intro) {
+            $filei = new File();
+            $fileiOk = $filei->diskSave($intro);
+
+            if ($fileiOk) {
+                // Actualizar el ID del archivo de introducción
+                $movie->update(['intro_id' => $filei->id]);
+            }
+        }
+        // Redirigir con mensaje de éxito
+        return redirect()->route('movies.show', $movie)
+            ->with('success', __('Movie successfully updated'));
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -170,14 +186,20 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        // Verificar si la relación 'file' está presente antes de eliminar
+        if ($movie->file) {
+            // Eliminar fitxer associat del disc i BD
+            $movie->file->diskDelete();
+        }
+    
         // Eliminar post de BD
         $movie->delete();
-        // Eliminar fitxer associat del disc i BD
-        $movie->file->diskDelete();
+    
         // Patró PRG amb missatge d'èxit
-        return redirect()->route("/")
+        return redirect()->route("pages-home")
             ->with('success', __('Movie successfully deleted'));
     }
+    
 
     public function update_workaround(Request $request, $id)
     {

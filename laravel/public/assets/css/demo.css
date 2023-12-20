@@ -124,7 +124,7 @@ body {
 }
 
 .header {
-  background-color:transparent;
+  background-color: transparent;
   padding: 0.9rem;
   text-align: center;
   color: dodgerblue;
@@ -137,8 +137,10 @@ section {
   padding: 2rem;
 }
 
+/* MOVIE BLAADEE */
+
 .movie {
-  width: 35vh;
+  width: 40vh;
   height: 25vh;
   margin: 0.5rem;
   transition: transform 0.3s;
@@ -156,24 +158,61 @@ section {
 }
 
 .container {
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 1px;
-  grid-row-gap: 7vh;
-  width: 100;
-  height: 82%;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
   padding-left: 0;
   margin-right: 100vh;
+  overflow: hidden;
 }
 
-.imgshow {
+/* SHOOOOW BLAADEE */
+
+.showcontainer {
+  width: 150vh;
+  height: 100%;
+  align-content: center;
+  padding: 0%;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.showvideo {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.titlemovie {
+  padding: 0;
+  font-size: 5vh;
+  background-color: transparent;
+  padding-left: 10px;
+  border: 1px solid transparent;
+  /* Establece un borde */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  /* Agrega una sombra */
+  border-radius: 0.25rem;
+}
+
+.tableshowsynopsis {
+  background-color: transparent;
   width: 100%;
   height: 100%;
 }
 
-.table {
-margin: 0;
-height: 100%;
-width: 100%;
+.synopsis {
+  font-size: 2.3vh;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.esynopsis {
+  margin-bottom: 3vh;
+  margin-top: 1vh ;
 }
