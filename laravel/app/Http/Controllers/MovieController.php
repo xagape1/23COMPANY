@@ -15,10 +15,28 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $busqueda = $request->busqueda;
 
+        $moviesQuery = Movie::query();
+        if ($busqueda) {
+            $moviesQuery->where('title', 'LIKE', '%' . $busqueda . '%')
+            ->paginate(2);
+        }
+
+        $movies = $moviesQuery->get();
+
+        $files = File::all();
+
+        $data = [
+            'movies' => $movies,
+            'files' => $files,
+        ];
+
+        return view('movies.index', $data);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -191,15 +209,15 @@ class MovieController extends Controller
             // Eliminar fitxer associat del disc i BD
             $movie->file->diskDelete();
         }
-    
+
         // Eliminar post de BD
         $movie->delete();
-    
+
         // Patró PRG amb missatge d'èxit
         return redirect()->route("pages-home")
             ->with('success', __('Movie successfully deleted'));
     }
-    
+
 
     public function update_workaround(Request $request, $id)
     {

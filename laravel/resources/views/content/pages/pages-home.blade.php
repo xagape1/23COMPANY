@@ -8,6 +8,6 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-    @include('partials.movies')
+    @include('movies.index')
 
 @endsection

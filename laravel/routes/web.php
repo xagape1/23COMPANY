@@ -39,4 +39,3 @@ Route::resource('files', FileController::class)
 Route::resource('profiles', ProfileController::class)->middleware(['auth']);
 
 Route::resource('movies', MovieController::class)->middleware(['auth']);
-
